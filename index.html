@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website of Obed Mavungu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c23f43446c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!---------------- HEADER ------------------>
+    <div id="header">
+        <div class="container">
+
+            <nav>
+                <!-- SVG LOGO -->
+                <svg class="obed-logo" width="180" viewBox="0 0 600 200" aria-label="Obed logo">
+                    <g transform="translate(0,15)" fill="#1E90FF">
+                        <rect x="0" y="25" width="110" height="90" rx="30" />
+                        <rect x="-12" y="55" width="18" height="30" rx="6" />
+                        <rect x="104" y="55" width="18" height="30" rx="6" />
+                        <rect x="50" y="0" width="10" height="25" rx="5" />
+                        <circle cx="55" cy="-5" r="10" />
+                        <circle cx="35" cy="70" r="12" fill="black" />
+                        <circle cx="75" cy="70" r="12" fill="black" />
+                        <rect x="35" y="95" width="50" height="15" rx="5" fill="black" />
+                    </g>
+
+                    <text x="145" y="115" fill="white" font-size="110" font-family="Poppins, sans-serif">
+                        BED
+                    </text>
+                </svg>
+
+                <ul id="sidemenu">
+                    
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-circle-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-list" onclick="openmenu()"></i>
+            </nav>
+
+            <!-- HEADER TEXT + IMAGE ---------------------------------------------------------------->
+            <div class="header-content">
+                <div class="header-text">
+                    <p> Galatians 2:20</p>
+                    <h1>Hi, I'm <span>Obed</span><br> From Virginia Tech</h1>
+                </div>
+
+                <img src="images/Backkkk.png" class="header-photo">
+            </div>
+
+        </div>
+    </div>
+
+    <!---------------- ABOUT ------------------------------------------------------>
+    <div id="about">
+        <div class="container">
+            <div class="row">
+
+                <div class="about-col-1">
+                    <img src="images/about me sec.jpeg">
+                </div>
+
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>
+                       Hey! I am Obed Mavungu, a Computer Science major with a minor in Mathematics at Virginia Tech. Originally from Kinshasa, Congo, I began my undergraduate studies at Auburn University before transferring to Virginia Tech as a junior.
+
+                            My academic and professional interests lie in software engineering, artificial intelligence. I am particularly motivated by building intelligent systems, solving complex problems, and leveraging technology to create real-world impact. I am actively seeking internship and research opportunities where I can contribute strong analytical skills, a solid mathematical foundation, and a passion for innovation.
+                    </p>
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('Skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('Experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('Education')">Education</p>
+                    </div>
+
+                    <div class="tab-contents active-tab" id="Skills">
+                        <ul>
+                            <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
+                            <li><span>Web Development</span><br>Building websites</li>
+                            <li><span>App Development</span><br>Creating mobile applications</li>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <li><span>Soft Skills </span><br> Teamwork, communicatiion , leadership, project management, decision analytics, customer service, problem solving, critical thinking, innovation</li>
+                            <li><span> Technical Skills</span><br> Microsoft office, Excel, CSS, HTML, Python, JavaScript, Node JS, Pytorch, Angular, PowerPoint, Arduino</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="Experience">
+                        <ul>
+                            <li><span>August 2025 - December 2025</span><br>Peer Tutor in Computer Science, Mathematics, Physics</li>
+                            <li><span>May 2025 - July 2025 </span><br>Reference Desk worker</li>
+                        
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="Education">
+                        <ul>
+                            <li><span>January 2026 - Present </span><br> Virginia Tech</li>
+                            <li><span>May 2024 - December 2025</span><br>Auburn University at Montgomery</li>
+                            <li><span>September 2017 - July 2023 </span><br> Complexe Scolaire Les Loupiots</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="Certification">
+                        <ul>
+                            <li><span> Jan 2025 </span><br> Angular by Sololearn </li>
+                            <li><span> Sept 2024 </span><br> C++ by Simplilearn </li>
+                            <li><span> Jun 2024 </span><br> C++ advanced by Sololearn </li>
+                            <li><span> Jun 2024 </span><br> WEB Development by Sololearn </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------------------------------------services------------------------------------------------------------>
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Dev</h2>
+                    <p> I build simple and modern websites for friends and individuals. I can create personal portfolios, project pages, or small websites to help you share your work online. I focus on clean design, easy navigation, and making sure the site looks good on all devices.</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-python"></i>
+                    <h2> Python App </h2>
+                    <p>   I build Python applications to help solve problems and automate tasks. This includes small programs, scripts, and basic applications for school projects, personal use, or simple business needs. I focus on writing clear, efficient code that is easy to use and understand.</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-app-store"></i>
+                    <h2> Mobile App</h2>
+                    <p>I create simple mobile applications, including small games like Flappy Bird and Snake. These apps are fun, easy to use, and great for learning or personal projects. I focus on clean design and smooth gameplay.</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <h2> Tutoring </h2>
+                    <p> I help students with mathematics and computer science. I tutor peers in topics like problem-solving, coding basics, and understanding difficult concepts. I explain ideas in a clear and simple way to help students gain confidence and improve their skills..</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------------------------------------portfolio----------------------------------------------> 
+    <div id="portfolio">
+        <div class="container">
+           <h1 class="sub-title">My Work</h1> 
+           <div class="work-list">
+            <div class="work">
+                <img src="images/arduino work.jpeg" alt=" Arduino based project">
+                <div class="layer">
+                    <h3>Web Controlled RC Car</h3>
+                    <p> Designed and implemented a web-controlled RC car with a secure login system, allowing users to remotely control the car through a web interface. The project integrates hardware and software to deliver reliable and user-friendly remote operation.</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/html work.jpeg">
+                 <div class="layer">
+                    <h3>Front-End project </h3>
+                    <p> Designed and built a responsive HTML-based website with clean layout, modern styling, and intuitive navigation. The project focuses on accessibility, performance, and a user-friendly interface across all devices.</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/python work.jpeg">
+                <div class="layer">
+                    <h3>Python Programs</h3>
+                    <p>Developed Python programs and scripts to automate tasks, process data, and solve real-world problems. The projects focus on clean code, efficiency, and practical functionality.</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+           </div>
+           <a href="#" class="btn"> See more </a>
+        </div>
+    </div>
+
+
+<!-----------------------------------------------------------------------CONTACT------------------------------------------------------------------->
+
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-regular fa-paper-plane"></i>obedmav1@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>(470)-437-6806</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61565804272555"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://x.com/_bedo48"><i class="fa-brands fa-twitter-square"></i></a>
+                    <a href="https://www.instagram.com/_bedo48/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/obed-mavungu-835542300/"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <a href="images/obed-mavung-resume 2025.docx.pdf" download class="btn btn2">Download CV</a>
+
+            </div>
+
+
+             <div class="contact-right">
+                <form name ="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder ="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type ="submit" class="btn btn2" >Submit</button>
+                </form>
+                <span id="msg">  </span>
+             </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © 2025 Obed Mavungu. Made with <i class="fa-solid fa-brain"></i>All rights reserved.</p>
+    </div>
+     
+
+</div>
+
+
+
+<script>
+    var tablinks=document.getElementsByClassName ("tab-links");
+    var tabcontents=document.getElementsByClassName ("tab-contents");
+
+    function opentab(tabname){
+        for (tablink of tablinks){
+            tablink.classList.remove("active-link")
+        }
+        for (tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab")
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+
+    var sidemenu = document.getElementById("sidemenu");
+    function openmenu()
+    {
+        sidemenu.style.right="0";
+
+    }
+
+    function closemenu()
+    {
+        sidemenu.style.right="-200px";
+        
+    }
+
+</script>
+
+<script>
+  const scriptURL = '<https://script.google.com/macros/s/AKfycbxatxA5xlIpMvae-DrjaGz4Oa2GLNvnnuNumTd6RjrH9f93_SqNV2f7IPmylXIxXuS8/exec>'
+  const form = document.forms['submit-to-google-sheet']
+const msg=document.getElementById("msg")
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+            msg.innerHTML ="Message sent successfully"
+            setTimeout(function{
+                msg.innerHTML=""
+            },5000)
+
+            form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+</body>
+</html>
