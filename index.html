@@ -27,32 +27,81 @@
                         <circle cx="75" cy="70" r="12" fill="black" />
                         <rect x="35" y="95" width="50" height="15" rx="5" fill="black" />
                     </g>
-
                     <text x="145" y="115" fill="white" font-size="110" font-family="Poppins, sans-serif">
                         BED
                     </text>
                 </svg>
 
                 <ul id="sidemenu">
-                    
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <i class="fa-solid fa-circle-xmark" onclick="closemenu()"></i>
+                    <div class="sidemenu-close" onclick="closemenu()">
+                        <span></span><span></span>
+                    </div>
+                    <li><a href="#header" onclick="closemenu()"><span class="nav-num">01</span>Home</a></li>
+                    <li><a href="#about" onclick="closemenu()"><span class="nav-num">02</span>About</a></li>
+                    <li><a href="#services" onclick="closemenu()"><span class="nav-num">03</span>Services</a></li>
+                    <li><a href="#portfolio" onclick="closemenu()"><span class="nav-num">04</span>Portfolio</a></li>
+                    <li><a href="#contact" onclick="closemenu()"><span class="nav-num">05</span>Contact</a></li>
                 </ul>
-                <i class="fa-solid fa-list" onclick="openmenu()"></i>
+                <button class="nav-toggle" onclick="openmenu()" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
             </nav>
 
-            <!-- HEADER TEXT + IMAGE ---------------------------------------------------------------->
+            <!-- HEADER TEXT + HOLOGRAM -->
             <div class="header-content">
                 <div class="header-text">
-                    <p> Galatians 2:20</p>
-                    <h1>Hi, I'm <span>Obed</span><br> From Virginia Tech</h1>
+                    <p>Galatians 2:20</p>
+                    <h1>Hi, I'm <span>Obed</span><br>From Virginia Tech</h1>
+                    <div class="header-btns">
+                        <a href="#portfolio" class="btn-primary">View My Work</a>
+                        <a href="#contact" class="btn-outline">Get In Touch</a>
+                    </div>
                 </div>
 
-                <img src="images/backkkk.png" class="header-photo">
+                <!-- ===== HOLOGRAM GIDEON ===== -->
+                <div class="holo-scene" id="holoScene">
+
+                    <!-- Rings orbitaux -->
+                    <div class="holo-ring r1"></div>
+                    <div class="holo-ring r2"></div>
+                    <div class="holo-ring r3"></div>
+
+                    <!-- Arcs HUD rotatifs -->
+                    <div class="holo-arc arc1"></div>
+                    <div class="holo-arc arc2"></div>
+
+                    <!-- Ticks SVG -->
+                    <svg class="holo-ticks" viewBox="0 0 440 440">
+                        <g id="tickGroup"></g>
+                    </svg>
+
+                    <!-- Photo hologramme PARTICULES -->
+                    <canvas class="holo-photo-canvas" id="holoParticleCanvas"></canvas>
+                    <div class="holo-glitch" id="holoGlitch"></div>
+
+                    <!-- Data labels HUD -->
+                    <span class="holo-label lbl-tl">NEURAL LINK</span>
+                    <span class="holo-label lbl-tr">SYS ACTIVE</span>
+                    <span class="holo-label lbl-bl">ID: OB-001</span>
+                    <span class="holo-label lbl-br">SYNC 100%</span>
+
+                    <!-- Base glow -->
+                    <div class="holo-base"></div>
+                    <div class="holo-base-line"></div>
+
+                    <!-- Status dots -->
+                    <div class="holo-status">
+                        <span class="holo-dot"></span>
+                        <span class="holo-dot"></span>
+                        <span class="holo-dot"></span>
+                        <span class="holo-status-txt">HOLOGRAM STABLE</span>
+                    </div>
+
+                    <!-- Canvas particules -->
+                    <canvas class="holo-particles" id="holoCanvas"></canvas>
+                </div>
+                <!-- ===== END HOLOGRAM ===== -->
+
             </div>
 
         </div>
@@ -62,25 +111,20 @@
     <div id="about">
         <div class="container">
             <div class="row">
-
                 <div class="about-col-1">
                     <img src="images/about-me-sec.jpeg">
                 </div>
-
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
                     <p>
                        Hey! I am Obed Mavungu, a Computer Science major with a minor in Mathematics at Virginia Tech. Originally from Kinshasa, Congo, I began my undergraduate studies at Auburn University before transferring to Virginia Tech as a junior.
-
                             My academic and professional interests lie in software engineering, artificial intelligence. I am particularly motivated by building intelligent systems, solving complex problems, and leveraging technology to create real-world impact. I am actively seeking internship and research opportunities where I can contribute strong analytical skills, a solid mathematical foundation, and a passion for innovation.
                     </p>
-
                     <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('Skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('Experience')">Experience</p>
                         <p class="tab-links" onclick="opentab('Education')">Education</p>
                     </div>
-
                     <div class="tab-contents active-tab" id="Skills">
                         <ul>
                             <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
@@ -88,42 +132,37 @@
                             <li><span>App Development</span><br>Creating mobile applications</li>
                             <span class="skill-tag">Python</span>
                             <span class="skill-tag">JavaScript</span>
-                            <li><span>Soft Skills </span><br> Teamwork, communicatiion , leadership, project management, decision analytics, customer service, problem solving, critical thinking, innovation</li>
-                            <li><span> Technical Skills</span><br> Microsoft office, Excel, CSS, HTML, Python, JavaScript, Node JS, Pytorch, Angular, PowerPoint, Arduino</li>
+                            <li><span>Soft Skills </span><br> Teamwork, communication, leadership, project management, decision analytics, customer service, problem solving, critical thinking, innovation</li>
+                            <li><span>Technical Skills</span><br> Microsoft office, Excel, CSS, HTML, Python, JavaScript, Node JS, Pytorch, Angular, PowerPoint, Arduino</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="Experience">
                         <ul>
                             <li><span>August 2025 - December 2025</span><br>Peer Tutor in Computer Science, Mathematics, Physics</li>
-                            <li><span>May 2025 - July 2025 </span><br>Reference Desk worker</li>
-                        
+                            <li><span>May 2025 - July 2025</span><br>Reference Desk worker</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="Education">
                         <ul>
-                            <li><span>January 2026 - Present </span><br> Virginia Tech</li>
+                            <li><span>January 2026 - Present</span><br> Virginia Tech</li>
                             <li><span>May 2024 - December 2025</span><br>Auburn University at Montgomery</li>
-                            <li><span>September 2017 - July 2023 </span><br> Complexe Scolaire Les Loupiots</li>
-                            
+                            <li><span>September 2017 - July 2023</span><br> Complexe Scolaire Les Loupiots</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="Certification">
                         <ul>
-                            <li><span> Jan 2025 </span><br> Angular by Sololearn </li>
-                            <li><span> Sept 2024 </span><br> C++ by Simplilearn </li>
-                            <li><span> Jun 2024 </span><br> C++ advanced by Sololearn </li>
-                            <li><span> Jun 2024 </span><br> WEB Development by Sololearn </li>
+                            <li><span>Jan 2025</span><br> Angular by Sololearn</li>
+                            <li><span>Sept 2024</span><br> C++ by Simplilearn</li>
+                            <li><span>Jun 2024</span><br> C++ advanced by Sololearn</li>
+                            <li><span>Jun 2024</span><br> WEB Development by Sololearn</li>
                         </ul>
-
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!---------------------------------------------------------services------------------------------------------------------------>
+    <!--------------------------------------------------------- services ------------------------------------------------------------>
     <div id="services">
         <div class="container">
             <h1 class="sub-title">My Services</h1>
@@ -131,49 +170,49 @@
                 <div>
                     <i class="fa-solid fa-code"></i>
                     <h2>Web Dev</h2>
-                    <p> I build simple and modern websites for friends and individuals. I can create personal portfolios, project pages, or small websites to help you share your work online. I focus on clean design, easy navigation, and making sure the site looks good on all devices.</p>
+                    <p>I build simple and modern websites for friends and individuals. I can create personal portfolios, project pages, or small websites to help you share your work online. I focus on clean design, easy navigation, and making sure the site looks good on all devices.</p>
                     <a href="#">Learn more</a>
                 </div>
                 <div>
                     <i class="fa-brands fa-python"></i>
-                    <h2> Python App </h2>
-                    <p>   I build Python applications to help solve problems and automate tasks. This includes small programs, scripts, and basic applications for school projects, personal use, or simple business needs. I focus on writing clear, efficient code that is easy to use and understand.</p>
+                    <h2>Python App</h2>
+                    <p>I build Python applications to help solve problems and automate tasks. This includes small programs, scripts, and basic applications for school projects, personal use, or simple business needs. I focus on writing clear, efficient code that is easy to use and understand.</p>
                     <a href="#">Learn more</a>
                 </div>
                 <div>
                     <i class="fa-brands fa-app-store"></i>
-                    <h2> Mobile App</h2>
+                    <h2>Mobile App</h2>
                     <p>I create simple mobile applications, including small games like Flappy Bird and Snake. These apps are fun, easy to use, and great for learning or personal projects. I focus on clean design and smooth gameplay.</p>
                     <a href="#">Learn more</a>
                 </div>
                 <div>
                     <i class="fa-solid fa-chalkboard-user"></i>
-                    <h2> Tutoring </h2>
-                    <p> I help students with mathematics and computer science. I tutor peers in topics like problem-solving, coding basics, and understanding difficult concepts. I explain ideas in a clear and simple way to help students gain confidence and improve their skills..</p>
+                    <h2>Tutoring</h2>
+                    <p>I help students with mathematics and computer science. I tutor peers in topics like problem-solving, coding basics, and understanding difficult concepts. I explain ideas in a clear and simple way to help students gain confidence and improve their skills.</p>
                     <a href="#">Learn more</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-------------------------------------------------------------------portfolio----------------------------------------------> 
+    <!------------------------------------------------------------------- portfolio ----------------------------------------------> 
     <div id="portfolio">
         <div class="container">
            <h1 class="sub-title">My Work</h1> 
            <div class="work-list">
             <div class="work">
-                <img src="images/arduino-work.jpeg" alt=" Arduino based project">
+                <img src="images/arduino-work.jpeg" alt="Arduino based project">
                 <div class="layer">
                     <h3>Web Controlled RC Car</h3>
-                    <p> Designed and implemented a web-controlled RC car with a secure login system, allowing users to remotely control the car through a web interface. The project integrates hardware and software to deliver reliable and user-friendly remote operation.</p>
+                    <p>Designed and implemented a web-controlled RC car with a secure login system, allowing users to remotely control the car through a web interface. The project integrates hardware and software to deliver reliable and user-friendly remote operation.</p>
                     <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
             <div class="work">
                 <img src="images/html-work.jpeg">
                  <div class="layer">
-                    <h3>Front-End project </h3>
-                    <p> Designed and built a responsive HTML-based website with clean layout, modern styling, and intuitive navigation. The project focuses on accessibility, performance, and a user-friendly interface across all devices.</p>
+                    <h3>Front-End project</h3>
+                    <p>Designed and built a responsive HTML-based website with clean layout, modern styling, and intuitive navigation. The project focuses on accessibility, performance, and a user-friendly interface across all devices.</p>
                     <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
@@ -186,104 +225,308 @@
                 </div>
             </div>
            </div>
-           <a href="#" class="btn"> See more </a>
+           <a href="#" class="btn">See more</a>
         </div>
     </div>
 
-
-<!-----------------------------------------------------------------------CONTACT------------------------------------------------------------------->
-
-<div id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="contact-left">
-                <h1 class="sub-title">Contact Me</h1>
-                <p><i class="fa-regular fa-paper-plane"></i>obedmav1@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i>(470)-437-6806</p>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61565804272555"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://x.com/_bedo48"><i class="fa-brands fa-twitter-square"></i></a>
-                    <a href="https://www.instagram.com/_bedo48/"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/obed-mavungu-835542300/"><i class="fa-brands fa-linkedin"></i></a>
+    <!----------------------------------------------------------------------- CONTACT ----------------------------------------------------------------->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-regular fa-paper-plane"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f303d3a3b323e296e1f38323e3633713c3032">[email&#160;protected]</a></p>
+                    <p><i class="fa-solid fa-phone"></i>(470)-437-6806</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61565804272555"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://x.com/_bedo48"><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href="https://www.instagram.com/_bedo48/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/obed-mavungu-835542300/"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="images/obed-mavung-resume-2026-new.pdf" download class="btn btn2">Download CV</a>
                 </div>
-                <a href="images/obed-mavung-resume-2026-new.pdf" download class="btn btn2">Download CV</a>
-
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
             </div>
-
-
-             <div class="contact-right">
-                <form name ="submit-to-google-sheet">
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder ="Your Email" required>
-                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type ="submit" class="btn btn2" >Submit</button>
-                </form>
-                <span id="msg">  </span>
-             </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2025 Obed Mavungu. Made with <i class="fa-solid fa-brain"></i> All rights reserved.</p>
         </div>
     </div>
-    <div class="copyright">
-        <p>Copyright © 2025 Obed Mavungu. Made with <i class="fa-solid fa-brain"></i>All rights reserved.</p>
-    </div>
-     
 
-</div>
-
-
-
-<script>
-    var tablinks=document.getElementsByClassName ("tab-links");
-    var tabcontents=document.getElementsByClassName ("tab-contents");
-
-    function opentab(tabname){
-        for (tablink of tablinks){
-            tablink.classList.remove("active-link")
+    <!-- ===================== SCRIPTS ===================== -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // --- Tab system ---
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for (var tablink of tablinks) tablink.classList.remove("active-link");
+            for (var tabcontent of tabcontents) tabcontent.classList.remove("active-tab");
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
         }
-        for (tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab")
+    </script>
+
+    <script>
+        // --- Side menu ---
+        var sidemenu = document.getElementById("sidemenu");
+        function openmenu() { sidemenu.style.right = "0"; }
+        function closemenu() { sidemenu.style.right = "-260px"; }
+    </script>
+
+    <script>
+        // --- Contact form ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxatxA5xlIpMvae-DrjaGz4Oa2GLNvnnuNumTd6RjrH9f93_SqNV2f7IPmylXIxXuS8/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.getElementById("msg");
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    msg.innerHTML = "Message sent successfully";
+                    setTimeout(function() { msg.innerHTML = ""; }, 5000);
+                    form.reset();
+                })
+                .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+
+
+    <!-- ===================== HOLOGRAM PARTICLE JS ===================== -->
+    <script>
+    (function () {
+
+        /* ── 1. SVG ticks ── */
+        const tickGroup = document.getElementById('tickGroup');
+        if (tickGroup) {
+            const cx = 220, cy = 220, r = 205;
+            for (let i = 0; i < 72; i++) {
+                const angle = (i * 5) * Math.PI / 180;
+                const isMajor = i % 18 === 0, isMid = i % 6 === 0;
+                const len = isMajor ? 16 : (isMid ? 10 : 5);
+                const x1 = cx + (r - len) * Math.sin(angle), y1 = cy - (r - len) * Math.cos(angle);
+                const x2 = cx + r * Math.sin(angle),         y2 = cy - r * Math.cos(angle);
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+                line.setAttribute('stroke', '#00f5ff');
+                line.setAttribute('stroke-width', isMajor ? 2 : 1);
+                line.setAttribute('opacity', isMajor ? 0.9 : (isMid ? 0.55 : 0.25));
+                tickGroup.appendChild(line);
+            }
         }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab");
-    }
 
-</script>
+        /* ── 2. Background ambient particles ── */
+        const bgCanvas = document.getElementById('holoCanvas');
+        if (bgCanvas) {
+            const bctx = bgCanvas.getContext('2d');
+            const S = 680; bgCanvas.width = S; bgCanvas.height = S;
+            const bps = Array.from({ length: 30 }, () => ({
+                x: Math.random() * S, y: Math.random() * S,
+                vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
+                r: Math.random() * 1.2 + .3, a: Math.random() * .3 + .05
+            }));
+            (function drawBg() {
+                bctx.clearRect(0, 0, S, S);
+                for (let i = 0; i < bps.length; i++) {
+                    for (let j = i + 1; j < bps.length; j++) {
+                        const dx = bps[i].x - bps[j].x, dy = bps[i].y - bps[j].y;
+                        const d = Math.sqrt(dx*dx + dy*dy);
+                        if (d < 80) {
+                            bctx.beginPath(); bctx.moveTo(bps[i].x, bps[i].y); bctx.lineTo(bps[j].x, bps[j].y);
+                            bctx.strokeStyle = 'rgba(0,245,255,' + (.08 * (1 - d/80)) + ')';
+                            bctx.lineWidth = .5; bctx.stroke();
+                        }
+                    }
+                }
+                bps.forEach(function(p) {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0) p.x = S; if (p.x > S) p.x = 0;
+                    if (p.y < 0) p.y = S; if (p.y > S) p.y = 0;
+                    bctx.beginPath(); bctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+                    bctx.fillStyle = 'rgba(0,245,255,' + p.a + ')';
+                    bctx.shadowBlur = 5; bctx.shadowColor = '#00f5ff';
+                    bctx.fill(); bctx.shadowBlur = 0;
+                });
+                requestAnimationFrame(drawBg);
+            })();
+        }
 
-<script>
+        /* ── 3. FACE PARTICLE ENGINE ── */
+        const faceCanvas = document.getElementById('holoParticleCanvas');
+        if (!faceCanvas) return;
+        const ctx = faceCanvas.getContext('2d');
+        const CW = 680, CH = 680;
+        faceCanvas.width = CW; faceCanvas.height = CH;
 
-    var sidemenu = document.getElementById("sidemenu");
-    function openmenu()
-    {
-        sidemenu.style.right="0";
+        var particles = [];
+        var mouseX = CW / 2, mouseY = CH / 2;
+        var frame = 0;
 
-    }
+        /* Load photo → sample pixels → build particles */
+        var img = new Image();
+        img.src = 'images/backkkk.png';
 
-    function closemenu()
-    {
-        sidemenu.style.right="-200px";
-        
-    }
+        img.onload = function () {
+            var SW = 160, SH = 185;
+            var off = document.createElement('canvas');
+            off.width = SW; off.height = SH;
+            var octx = off.getContext('2d');
+            octx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, SW, SH);
+            var data = octx.getImageData(0, 0, SW, SH).data;
 
-</script>
+            var scaleX = CW * 0.92 / SW;
+            var scaleY = CH * 0.94 / SH;
+            var offX   = CW * 0.04;
+            var offY   = CH * 0.03;
+            var STEP   = 3;
+            particles  = [];
 
-<script>
-  const scriptURL = '<https://script.google.com/macros/s/AKfycbxatxA5xlIpMvae-DrjaGz4Oa2GLNvnnuNumTd6RjrH9f93_SqNV2f7IPmylXIxXuS8/exec>'
-  const form = document.forms['submit-to-google-sheet']
-const msg=document.getElementById("msg")
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-            msg.innerHTML ="Message sent successfully"
-            setTimeout(function{
-                msg.innerHTML=""
-            },5000)
+            for (var sy = 0; sy < SH; sy += STEP) {
+                for (var sx = 0; sx < SW; sx += STEP) {
+                    var idx   = (sy * SW + sx) * 4;
+                    var r     = data[idx], g = data[idx+1], b = data[idx+2], a = data[idx+3];
+                    if (a < 30) continue;
+                    var bright = (r + g + b) / 3;
+                    if (bright < 12) continue;
 
-            form.reset()
-      })
-      .catch(error => console.error('Error!', error.message))
-  })
-</script>
+                    var tx   = sx * scaleX + offX;
+                    var ty   = sy * scaleY + offY;
+                    var norm = bright / 255;
+
+                    /* Radial fade mask — distance from face center in sample space */
+                    var faceCX = SW * 0.5;
+                    var faceCY = SH * 0.42; /* slightly above center = forehead */
+                    var dx2    = (sx - faceCX) / (SW * 0.52);
+                    var dy2    = (sy - faceCY) / (SH * 0.52);
+                    /* Ellipse distance — taller than wide to match face shape */
+                    var edist  = Math.sqrt(dx2 * dx2 * 1.1 + dy2 * dy2 * 0.9);
+                    /* Smooth falloff: full opacity in center, fades from 0.55 → 0 at edges */
+                    var fade   = Math.max(0, 1 - Math.pow(Math.max(0, edist - 0.3) / 0.72, 1.6));
+                    /* Also add random scatter at edges for organic disintegration */
+                    var scatter = edist > 0.5 ? Math.random() : 1.0;
+                    var finalFade = fade * scatter;
+                    if (finalFade < 0.04) continue; /* skip near-invisible edge particles */
+
+                    particles.push({
+                        x: Math.random() * CW,
+                        y: Math.random() * CH,
+                        tx: tx, ty: ty,
+                        baseX: tx, baseY: ty,
+                        size: norm * 2.4 * finalFade + 0.3,
+                        alpha: (norm * 0.7 + 0.18) * finalFade,
+                        brightness: norm,
+                        phase: Math.random() * Math.PI * 2,
+                        speed: Math.random() * 0.018 + 0.012,
+                        /* Edge particles drift more = disintegration feel */
+                        driftAmp: 1.3 + (1 - finalFade) * 4.5
+                    });
+                }
+            }
+            animate();
+        };
+
+        /* Mouse influence */
+        var scene = document.getElementById('holoScene');
+        if (scene) {
+            document.addEventListener('mousemove', function(e) {
+                var rect = scene.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+                var cx = rect.width / 2, cy = rect.height / 2;
+                var dx = (mouseX - cx) / cx;
+                var dy = (mouseY - cy) / cy;
+                scene.style.transform = 'rotateY(' + (dx*18) + 'deg) rotateX(' + (-dy*12) + 'deg)';
+                scene.style.transition = 'transform 0.12s ease-out';
+            });
+            document.addEventListener('mouseleave', function() {
+                scene.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            });
+        }
+
+        /* Glitch */
+        var glitch = document.getElementById('holoGlitch');
+        function triggerGlitch() {
+            if (!glitch) return;
+            glitch.classList.add('active');
+            setTimeout(function() { glitch.classList.remove('active'); }, 150 + Math.random()*200);
+            setTimeout(triggerGlitch, 3000 + Math.random()*5000);
+        }
+        setTimeout(triggerGlitch, 2000);
+
+        /* Main loop */
+        function animate() {
+            ctx.clearRect(0, 0, CW, CH);
+            frame++;
+
+            var REPEL_R    = 75;
+            var REPEL_F    = 14;
+            var EASE       = 0.075;
+            var FLOAT_AMP  = 1.3;
+
+            for (var i = 0; i < particles.length; i++) {
+                var p = particles[i];
+                p.phase += p.speed;
+
+                var floatX = Math.sin(p.phase) * (p.driftAmp || 1.3);
+                var floatY = Math.cos(p.phase * 0.7) * (p.driftAmp || 1.3) * 0.5;
+
+                var dx   = p.baseX - mouseX;
+                var dy   = p.baseY - mouseY;
+                var dist = Math.sqrt(dx*dx + dy*dy);
+                var rx = 0, ry = 0;
+                if (dist < REPEL_R && dist > 0) {
+                    var force = (REPEL_R - dist) / REPEL_R;
+                    rx = (dx / dist) * force * REPEL_F;
+                    ry = (dy / dist) * force * REPEL_F;
+                }
+
+                p.tx = p.baseX + floatX + rx;
+                p.ty = p.baseY + floatY + ry;
+                p.x += (p.tx - p.x) * EASE;
+                p.y += (p.ty - p.y) * EASE;
+
+                var b      = p.brightness;
+                var pulse  = 0.82 + 0.18 * Math.sin(p.phase * 1.8);
+                var alpha  = p.alpha * pulse;
+
+                /* Color: bright=white-cyan, mid=cyan, dark=deep blue */
+                var cr = Math.floor(b * 100);
+                var cg = Math.floor(200 + b * 55);
+                var cb = Math.floor(230 + b * 25);
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + alpha + ')';
+                if (b > 0.55) {
+                    ctx.shadowBlur  = 5 + b * 9;
+                    ctx.shadowColor = 'rgba(0,245,255,' + (b * 0.75) + ')';
+                }
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            /* Scan line */
+            var scanY = ((frame * 1.1) % (CH * 1.1)) - CH * 0.05;
+            var sg = ctx.createLinearGradient(0, scanY-3, 0, scanY+3);
+            sg.addColorStop(0,   'rgba(0,245,255,0)');
+            sg.addColorStop(0.5, 'rgba(0,245,255,0.3)');
+            sg.addColorStop(1,   'rgba(0,245,255,0)');
+            ctx.fillStyle = sg;
+            ctx.fillRect(CW*0.08, scanY-3, CW*0.84, 6);
+
+            requestAnimationFrame(animate);
+        }
+
+    })();
+    </script>
 
 </body>
 </html>
-
