@@ -1,559 +1,530 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio Website of Obed Mavungu</title>
+    <title>Obed Mavungu — Software Engineer</title>
+    <meta name="description" content="Obed Mavungu — Computer Science student at Virginia Tech. Full-stack engineer, AI enthusiast, and problem solver.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/c23f43446c.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c23f43446c.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
 
-    <!---------------- HEADER ------------------>
-    <div id="header">
-        <div class="container">
+<!-- ======================== INTRO SCREEN ======================== -->
+<div id="intro" aria-label="Loading screen">
+    <canvas id="introRain"></canvas>
+    <div class="intro-scanlines"></div>
+    <div class="intro-center">
+        <svg class="intro-logo" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="iGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00f5ff"/><stop offset="100%" stop-color="#1E90FF"/>
+                </linearGradient>
+                <filter id="iGlow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <clipPath id="iClip"><circle cx="30" cy="30" r="24"/></clipPath>
+            </defs>
+            <g>
+                <circle cx="30" cy="30" r="24" fill="none" stroke="url(#iGrad)" stroke-width="2.5" stroke-dasharray="120 30" stroke-dashoffset="-8" filter="url(#iGlow)"/>
+                <circle cx="30" cy="30" r="18" fill="rgba(0,20,50,.7)" stroke="url(#iGrad)" stroke-width="1" stroke-dasharray="6 4" opacity=".5"/>
+                <circle cx="30" cy="30" r="13" fill="rgba(0,40,80,.6)"/>
+                <line x1="12" y1="30" x2="48" y2="30" stroke="#00f5ff" stroke-width=".8" opacity=".5" clip-path="url(#iClip)">
+                    <animate attributeName="y1" values="22;38;22" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="y2" values="22;38;22" dur="3s" repeatCount="indefinite"/>
+                </line>
+                <line x1="30" y1="4" x2="30" y2="9" stroke="url(#iGrad)" stroke-width="2"/>
+                <line x1="30" y1="51" x2="30" y2="56" stroke="url(#iGrad)" stroke-width="2"/>
+                <line x1="4" y1="30" x2="9" y2="30" stroke="url(#iGrad)" stroke-width="2"/>
+                <line x1="51" y1="30" x2="56" y2="30" stroke="url(#iGrad)" stroke-width="2"/>
+                <circle cx="51" cy="12" r="2.5" fill="#00f5ff" filter="url(#iGlow)">
+                    <animate attributeName="opacity" values="1;.2;1" dur="1.6s" repeatCount="indefinite"/>
+                    <animate attributeName="r" values="2.5;3.5;2.5" dur="1.6s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="30" cy="30" r="21" fill="none" stroke="#1E90FF" stroke-width="1" stroke-dasharray="18 114" opacity=".6" filter="url(#iGlow)">
+                    <animateTransform attributeName="transform" type="rotate" from="0 30 30" to="360 30 30" dur="6s" repeatCount="indefinite"/>
+                </circle>
+                <animateTransform attributeName="transform" type="rotate" from="0 30 30" to="360 30 30" dur="8s" repeatCount="indefinite"/>
+            </g>
+        </svg>
+        <div class="intro-name" id="iName">: : 0B3D : :</div>
+        <div class="intro-granted" id="iGranted">ACCESS GRANTED</div>
+        <div class="intro-status" id="iStatus"><span class="intro-dot"></span><span>INITIALIZING</span></div>
+        <div class="intro-binary" id="iBinary"></div>
+        <div class="intro-msg" id="iMsg"></div>
+        <button class="intro-enter" id="iEnter" type="button"><span class="intro-ps1">$</span> ENTER<span class="intro-caret">_</span></button>
+    </div>
+</div>
 
+<!-- ======================== MAIN SITE ======================== -->
+<div id="site">
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="container">
             <nav>
-                <svg class="obed-logo" viewBox="0 0 160 60" aria-label="Obed logo" xmlns="http://www.w3.org/2000/svg">
+                <svg class="logo" viewBox="0 0 160 60" aria-label="Obed logo" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#00f5ff"/>
-                            <stop offset="100%" stop-color="#1E90FF"/>
+                            <stop offset="0%" stop-color="#00f5ff"/><stop offset="100%" stop-color="#1E90FF"/>
                         </linearGradient>
                         <linearGradient id="lg2" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-                            <stop offset="100%" stop-color="#aaccff" stop-opacity="0.85"/>
+                            <stop offset="0%" stop-color="#fff" stop-opacity="1"/><stop offset="100%" stop-color="#aaccff" stop-opacity=".85"/>
                         </linearGradient>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="1.5" result="b"/>
-                            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                        </filter>
-                        <clipPath id="oClip">
-                            <circle cx="30" cy="30" r="24"/>
-                        </clipPath>
+                        <filter id="glow"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <clipPath id="oClip"><circle cx="30" cy="30" r="24"/></clipPath>
                     </defs>
-
-                    <!-- ══ O TECH — clockwise rotation ══ -->
                     <g id="oGroup">
-                        <!-- Outer circle — broken arc (gap at top-right) -->
-                        <circle cx="30" cy="30" r="24" fill="none" stroke="url(#lg)" stroke-width="2.5"
-                            stroke-dasharray="120 30" stroke-dashoffset="-8" filter="url(#glow)"/>
-                        <!-- Inner circle thin -->
-                        <circle cx="30" cy="30" r="18" fill="rgba(0,20,50,0.7)" stroke="url(#lg)" stroke-width="1"
-                            stroke-dasharray="6 4" opacity="0.5"/>
-                        <!-- Core fill -->
-                        <circle cx="30" cy="30" r="13" fill="rgba(0,40,80,0.6)"/>
-
-                        <!-- Horizontal scan line inside O -->
-                        <line x1="12" y1="30" x2="48" y2="30" stroke="#00f5ff" stroke-width="0.8" opacity="0.5" clip-path="url(#oClip)">
+                        <circle cx="30" cy="30" r="24" fill="none" stroke="url(#lg)" stroke-width="2.5" stroke-dasharray="120 30" stroke-dashoffset="-8" filter="url(#glow)"/>
+                        <circle cx="30" cy="30" r="18" fill="rgba(0,20,50,.7)" stroke="url(#lg)" stroke-width="1" stroke-dasharray="6 4" opacity=".5"/>
+                        <circle cx="30" cy="30" r="13" fill="rgba(0,40,80,.6)"/>
+                        <line x1="12" y1="30" x2="48" y2="30" stroke="#00f5ff" stroke-width=".8" opacity=".5" clip-path="url(#oClip)">
                             <animate attributeName="y1" values="22;38;22" dur="3s" repeatCount="indefinite"/>
                             <animate attributeName="y2" values="22;38;22" dur="3s" repeatCount="indefinite"/>
-                            <animate attributeName="opacity" values="0.5;0.15;0.5" dur="3s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values=".5;.15;.5" dur="3s" repeatCount="indefinite"/>
                         </line>
-
-                        <!-- 4 corner tick marks on the ring -->
-                        <line x1="30" y1="4"  x2="30" y2="9"  stroke="url(#lg)" stroke-width="2"/>
+                        <line x1="30" y1="4" x2="30" y2="9" stroke="url(#lg)" stroke-width="2"/>
                         <line x1="30" y1="51" x2="30" y2="56" stroke="url(#lg)" stroke-width="2"/>
-                        <line x1="4"  y1="30" x2="9"  y2="30" stroke="url(#lg)" stroke-width="2"/>
+                        <line x1="4" y1="30" x2="9" y2="30" stroke="url(#lg)" stroke-width="2"/>
                         <line x1="51" y1="30" x2="56" y2="30" stroke="url(#lg)" stroke-width="2"/>
-
-                        <!-- Small dot at gap (top-right) — pulsing -->
                         <circle cx="51" cy="12" r="2.5" fill="#00f5ff" filter="url(#glow)">
-                            <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="1;.2;1" dur="1.6s" repeatCount="indefinite"/>
                             <animate attributeName="r" values="2.5;3.5;2.5" dur="1.6s" repeatCount="indefinite"/>
                         </circle>
-
-                        <!-- Rotating arc segment (counter-clockwise inner) -->
-                        <circle cx="30" cy="30" r="21" fill="none" stroke="#1E90FF" stroke-width="1"
-                            stroke-dasharray="18 114" opacity="0.6" filter="url(#glow)">
-                            <animateTransform attributeName="transform" type="rotate"
-                                from="0 30 30" to="360 30 30" dur="6s" repeatCount="indefinite"/>
+                        <circle cx="30" cy="30" r="21" fill="none" stroke="#1E90FF" stroke-width="1" stroke-dasharray="18 114" opacity=".6" filter="url(#glow)">
+                            <animateTransform attributeName="transform" type="rotate" from="0 30 30" to="360 30 30" dur="6s" repeatCount="indefinite"/>
                         </circle>
-
-                        <!-- CLOCKWISE rotation of the whole O group -->
-                        <animateTransform attributeName="transform" type="rotate"
-                            from="0 30 30" to="360 30 30" dur="8s" repeatCount="indefinite"/>
+                        <animateTransform attributeName="transform" type="rotate" from="0 30 30" to="360 30 30" dur="8s" repeatCount="indefinite"/>
                     </g>
-
-                    <!-- ══ BED ══ -->
-                    <text x="68" y="40" fill="url(#lg2)"
-                        font-family="'Poppins', sans-serif"
-                        font-size="32" font-weight="700"
-                        letter-spacing="-1">BED</text>
-
-                    <!-- Tiny underline accent -->
-                    <line x1="68" y1="46" x2="148" y2="46" stroke="url(#lg)" stroke-width="1" opacity="0.4"/>
+                    <text x="68" y="40" fill="url(#lg2)" font-family="'Poppins',sans-serif" font-size="32" font-weight="700" letter-spacing="-1">BED</text>
+                    <line x1="68" y1="46" x2="148" y2="46" stroke="url(#lg)" stroke-width="1" opacity=".4"/>
                 </svg>
 
                 <ul id="sidemenu">
-                    <div class="sidemenu-close" onclick="closemenu()">
-                        <span></span><span></span>
-                    </div>
+                    <div class="sidemenu-close" onclick="closemenu()"><span></span><span></span></div>
                     <li><a href="#header" onclick="closemenu()"><span class="nav-num">01</span>Home</a></li>
                     <li><a href="#about" onclick="closemenu()"><span class="nav-num">02</span>About</a></li>
                     <li><a href="#services" onclick="closemenu()"><span class="nav-num">03</span>Services</a></li>
                     <li><a href="#portfolio" onclick="closemenu()"><span class="nav-num">04</span>Portfolio</a></li>
                     <li><a href="#contact" onclick="closemenu()"><span class="nav-num">05</span>Contact</a></li>
                 </ul>
-                <button class="nav-toggle" onclick="openmenu()" aria-label="Open menu">
-                    <span></span><span></span><span></span>
-                </button>
+                <button class="nav-toggle" onclick="openmenu()" aria-label="Open menu"><span></span><span></span><span></span></button>
             </nav>
 
-            <!-- HEADER TEXT + HOLOGRAM -->
-            <div class="header-content">
-                <div class="header-text">
-                    <p>Galatians 2:20</p>
+            <div class="hero">
+                <div class="hero-text">
+                    <p class="hero-tag">Galatians 2:20</p>
                     <h1>Hi, I'm <span>Obed</span><br>From Virginia Tech</h1>
-                    <div class="header-btns">
-                        <a href="#portfolio" class="btn-primary">View My Work</a>
-                        <a href="#contact" class="btn-outline">Get In Touch</a>
+                    <div class="hero-btns">
+                        <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer" class="btn-fill">View My Work</a>
+                        <a href="#contact" class="btn-ghost">Get In Touch</a>
                     </div>
                 </div>
 
-                <!-- ===== HOLOGRAM ===== -->
-                <div class="holo-scene" id="holoScene">
+                <!-- HOLOGRAM -->
+                <div class="holo" id="holoScene">
                     <div class="holo-ring r1"></div>
                     <div class="holo-ring r2"></div>
                     <div class="holo-ring r3"></div>
-                    <div class="holo-arc arc1"></div>
-                    <div class="holo-arc arc2"></div>
-                    <svg class="holo-ticks" viewBox="0 0 440 440">
-                        <g id="tickGroup"></g>
-                    </svg>
-                    <canvas class="holo-photo-canvas" id="holoParticleCanvas"></canvas>
+                    <div class="holo-arc a1"></div>
+                    <div class="holo-arc a2"></div>
+                    <svg class="holo-ticks" viewBox="0 0 440 440"><g id="tickGroup"></g></svg>
+                    <canvas class="holo-face" id="holoParticleCanvas"></canvas>
                     <div class="holo-glitch" id="holoGlitch"></div>
-                    <span class="holo-label lbl-tl">NEURAL LINK</span>
-                    <span class="holo-label lbl-tr">SYS ACTIVE</span>
-                    <span class="holo-label lbl-bl">ID: OB-001</span>
-                    <span class="holo-label lbl-br">SYNC 100%</span>
+                    <span class="holo-lbl tl">NEURAL LINK</span>
+                    <span class="holo-lbl tr">SYS ACTIVE</span>
+                    <span class="holo-lbl bl">ID: OB-001</span>
+                    <span class="holo-lbl br">SYNC 100%</span>
                     <div class="holo-base"></div>
                     <div class="holo-base-line"></div>
                     <div class="holo-status">
-                        <span class="holo-dot"></span>
-                        <span class="holo-dot"></span>
-                        <span class="holo-dot"></span>
+                        <span class="holo-dot"></span><span class="holo-dot"></span><span class="holo-dot"></span>
                         <span class="holo-status-txt">HOLOGRAM STABLE</span>
                     </div>
                     <canvas class="holo-particles" id="holoCanvas"></canvas>
                 </div>
             </div>
-
         </div>
-    </div>
+    </header>
 
-    <!---------------- ABOUT ------------------------------------------------------>
-    <div id="about">
+    <!-- ABOUT -->
+    <section id="about">
         <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="images/about-me-sec.jpeg">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="images/about-me-sec.jpeg" alt="Photo of Obed Mavungu" loading="lazy">
                 </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p>
-                       Hey! I am Obed Mavungu, a Computer Science major with a minor in Mathematics at Virginia Tech. Originally from Kinshasa, Congo, I began my undergraduate studies at Auburn University before transferring to Virginia Tech as a junior.
-                            My academic and professional interests lie in software engineering, artificial intelligence. I am particularly motivated by building intelligent systems, solving complex problems, and leveraging technology to create real-world impact. I am actively seeking internship and research opportunities where I can contribute strong analytical skills, a solid mathematical foundation, and a passion for innovation.
-                    </p>
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('Skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('Experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('Education')">Education</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="Skills">
-                        <ul>
-                            <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
-                            <li><span>Web Development</span><br>Building websites</li>
-                            <li><span>App Development</span><br>Creating mobile applications</li>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <li><span>Soft Skills </span><br> Teamwork, communication, leadership, project management, decision analytics, customer service, problem solving, critical thinking, innovation</li>
-                            <li><span>Technical Skills</span><br> Microsoft office, Excel, CSS, HTML, Python, JavaScript, Node JS, Pytorch, Angular, PowerPoint, Arduino</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="Experience">
-                        <ul>
-                            <li><span>August 2025 - December 2025</span><br>Peer Tutor in Computer Science, Mathematics, Physics</li>
-                            <li><span>May 2025 - July 2025</span><br>Reference Desk worker</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="Education">
-                        <ul>
-                            <li><span>January 2026 - Present</span><br> Virginia Tech</li>
-                            <li><span>May 2024 - December 2025</span><br>Auburn University at Montgomery</li>
-                            <li><span>September 2017 - July 2023</span><br> Complexe Scolaire Les Loupiots</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="Certification">
-                        <ul>
-                            <li><span>Jan 2025</span><br> Angular by Sololearn</li>
-                            <li><span>Sept 2024</span><br> C++ by Simplilearn</li>
-                            <li><span>Jun 2024</span><br> C++ advanced by Sololearn</li>
-                            <li><span>Jun 2024</span><br> WEB Development by Sololearn</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                <div class="about-body">
+                    <h2 class="section-title">About Me</h2>
+                    <p>Hey! I am Obed Mavungu, a Computer Science major with a minor in Mathematics at Virginia Tech. Originally from Kinshasa, Congo, I began my undergraduate studies at Auburn University before transferring to Virginia Tech as a junior. My academic and professional interests lie in software engineering, artificial intelligence. I am particularly motivated by building intelligent systems, solving complex problems, and leveraging technology to create real-world impact. I am actively seeking internship and research opportunities where I can contribute strong analytical skills, a solid mathematical foundation, and a passion for innovation.</p>
 
-    <!--------------------------------------------------------- services ------------------------------------------------------------>
-    <div id="services">
-        <div class="container">
-            <h1 class="sub-title">My Services</h1>
-            <div class="services-list">
-                <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>Web Dev</h2>
-                    <p>I build simple and modern websites for friends and individuals. I can create personal portfolios, project pages, or small websites to help you share your work online. I focus on clean design, easy navigation, and making sure the site looks good on all devices.</p>
-                    <a href="#">Learn more</a>
-                </div>
-                <div>
-                    <i class="fa-brands fa-python"></i>
-                    <h2>Python App</h2>
-                    <p>I build Python applications to help solve problems and automate tasks. This includes small programs, scripts, and basic applications for school projects, personal use, or simple business needs. I focus on writing clear, efficient code that is easy to use and understand.</p>
-                    <a href="#">Learn more</a>
-                </div>
-                <div>
-                    <i class="fa-brands fa-app-store"></i>
-                    <h2>Mobile App</h2>
-                    <p>I create simple mobile applications, including small games like Flappy Bird and Snake. These apps are fun, easy to use, and great for learning or personal projects. I focus on clean design and smooth gameplay.</p>
-                    <a href="#">Learn more</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                    <h2>Tutoring</h2>
-                    <p>I help students with mathematics and computer science. I tutor peers in topics like problem-solving, coding basics, and understanding difficult concepts. I explain ideas in a clear and simple way to help students gain confidence and improve their skills.</p>
-                    <a href="#">Learn more</a>
+                    <div class="tabs">
+                        <button class="tab active" data-tab="skills">Skills</button>
+                        <button class="tab" data-tab="experience">Experience</button>
+                        <button class="tab" data-tab="education">Education</button>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="tab-panel active" id="tab-skills">
+                        <div class="skills-grid">
+                            <div class="skill-card">
+                                <h3><i class="fa-solid fa-code"></i> Languages</h3>
+                                <p>JavaScript &bull; TypeScript &bull; Java &bull; Python &bull; SQL &bull; C# &bull; C++</p>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fa-solid fa-palette"></i> Frontend</h3>
+                                <p>React &bull; Vite &bull; Tailwind CSS &bull; Responsive Design</p>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fa-solid fa-server"></i> Backend</h3>
+                                <p>Node.js &bull; Express &bull; REST APIs &bull; JWT Authentication</p>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fa-solid fa-database"></i> Databases</h3>
+                                <p>PostgreSQL &bull; Database Design</p>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fa-solid fa-wrench"></i> Tools</h3>
+                                <p>Git &bull; GitHub &bull; Vercel &bull; Render &bull; VS Code</p>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fa-solid fa-microchip"></i> Computer Science</h3>
+                                <p>Data Structures &bull; Algorithms &bull; Object-Oriented Programming</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="tab-panel" id="tab-experience">
+                        <ul class="timeline">
+                            <li><span class="tl-date">February 2026 &ndash; Present</span><strong>Hokie Grill Employee</strong><br>Worked in a fast-paced team environment while balancing academic responsibilities. Developed strong collaboration, communication, and time-management skills.</li>
+                            <li><span class="tl-date">August 2025 &ndash; December 2025</span>Peer Tutor in Computer Science, Mathematics, Physics</li>
+                            <li><span class="tl-date">May 2025 &ndash; July 2025</span>Reference Desk Worker</li>
+                        </ul>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="tab-panel" id="tab-education">
+                        <ul class="timeline">
+                            <li><span class="tl-date">January 2026 &ndash; Present</span>Virginia Tech</li>
+                            <li><span class="tl-date">May 2024 &ndash; December 2025</span>Auburn University at Montgomery</li>
+                            <li><span class="tl-date">September 2017 &ndash; July 2023</span>Complexe Scolaire Les Loupiots</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!------------------------------------------------------------------- portfolio ----------------------------------------------> 
-    <div id="portfolio">
+    <!-- SERVICES -->
+    <section id="services">
         <div class="container">
-           <h1 class="sub-title">My Work</h1> 
-           <div class="work-list">
-            <div class="work">
-                <img src="images/arduino-work.jpeg" alt="Arduino based project">
-                <div class="layer">
-                    <h3>Web Controlled RC Car</h3>
-                    <p>Designed and implemented a web-controlled RC car with a secure login system, allowing users to remotely control the car through a web interface. The project integrates hardware and software to deliver reliable and user-friendly remote operation.</p>
-                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
+            <h2 class="section-title">My Services</h2>
+            <div class="cards-grid">
+                <article class="card">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>Full-Stack Engineering</h3>
+                    <p>I build full-stack web applications using modern technologies such as React, TypeScript, Node.js, and PostgreSQL. I design scalable APIs, implement authentication systems, and deploy applications to cloud platforms like Vercel and Render.</p>
+                </article>
+                <article class="card">
+                    <i class="fa-solid fa-brain"></i>
+                    <h3>AI &amp; Intelligent Systems</h3>
+                    <p>I design AI-powered applications and intelligent agents that automate tasks and enhance user experiences. My work includes integrating AI APIs, building automation tools, and creating smart systems capable of solving real-world problems.</p>
+                </article>
+                <article class="card">
+                    <i class="fa-brands fa-java"></i>
+                    <h3>Java &amp; Algorithmic Development</h3>
+                    <p>I develop Java applications focused on data structures and algorithms. I implement efficient solutions using stacks, queues, linked lists, recursion, and other core computer science concepts.</p>
+                </article>
+                <article class="card">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    <h3>Software Architecture</h3>
+                    <p>I focus on designing clean and maintainable software architectures. My approach emphasizes strong problem-solving skills, efficient algorithms, and writing readable, well-structured code.</p>
+                </article>
             </div>
-            <div class="work">
-                <img src="images/html-work.jpeg">
-                 <div class="layer">
-                    <h3>Front-End project</h3>
-                    <p>Designed and built a responsive HTML-based website with clean layout, modern styling, and intuitive navigation. The project focuses on accessibility, performance, and a user-friendly interface across all devices.</p>
-                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <div class="work">
-                <img src="images/python-work.jpeg">
-                <div class="layer">
-                    <h3>Python Programs</h3>
-                    <p>Developed Python programs and scripts to automate tasks, process data, and solve real-world problems. The projects focus on clean code, efficiency, and practical functionality.</p>
-                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
-            </div>
-           </div>
-           <a href="#" class="btn">See more</a>
         </div>
-    </div>
+    </section>
 
-    <!----------------------------------------------------------------------- CONTACT ----------------------------------------------------------------->
-    <div id="contact">
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
         <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-regular fa-paper-plane"></i>obedmav1@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i>(470)-437-6806</p>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=61565804272555"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="https://x.com/_bedo48"><i class="fa-brands fa-twitter-square"></i></a>
-                        <a href="https://www.instagram.com/_bedo48/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/obed-mavungu-835542300/"><i class="fa-brands fa-linkedin"></i></a>
+            <h2 class="section-title">My Work</h2>
+            <div class="work-grid">
+                <div class="work-card">
+                    <img src="images/syllabyte.png" alt="Syllabyte" loading="lazy">
+                    <div class="work-overlay">
+                        <h3>Syllabyte</h3>
+                        <p>An AI-powered learning platform that uses a multi-agent system to support university students with tutoring,practice exercices, automated grading and feedback</p>
+                        <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
-                    <a href="images/obed-mavung-resume-2026-new.pdf" download class="btn btn2">Download CV</a>
                 </div>
-                <div class="contact-right">
-                    <form name="submit-to-google-sheet">
-                        <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn btn2">Submit</button>
-                    </form>
+                <div class="work-card">
+                    <img src="images/productivity saas.png" alt="Productivity SaaS" loading="lazy">
+                    <div class="work-overlay">
+                        <h3>Productivity SaaS</h3>
+                        <p>A full stack management platform with authentification database persistence and cloud deployment that allow users to track,organize and manage their tasks.</p>
+                        <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="images/Screenshot 2026-04-05 135308.png" alt="Obed Site Builder" loading="lazy">
+                    <div class="work-overlay">
+                        <h3>Obed Site Builder</h3>
+                        <p>AI-powered web application that generates websites from user prompts and allows real-time preview and interaction with dynamically generated components.</p>
+                        <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer" class="btn-outline-block">See more</a>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="section-title">Contact Me</h2>
+                    <p class="contact-line"><i class="fa-regular fa-paper-plane"></i> obedmav1@gmail.com</p>
+                    <p class="contact-line"><i class="fa-solid fa-phone"></i> (470)-437-6806</p>
+                    <p class="contact-line"><i class="fa-brands fa-github"></i> <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer">github.com/bedo-48</a></p>
+                    <div class="socials">
+                        <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61565804272555" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://x.com/_bedo48" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href="https://www.instagram.com/_bedo48/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/obed-mavungu-835542300/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="images/obed-mavung-resume-2026-new.pdf" download class="btn-fill small">Download CV</a>
+                </div>
+                <form class="contact-form" name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn-fill small">Submit</button>
                     <span id="msg"></span>
-                </div>
+                </form>
             </div>
         </div>
-        <div class="copyright">
+        <footer class="footer">
             <p>Copyright &copy; 2025 Obed Mavungu. Made with <i class="fa-solid fa-brain"></i> All rights reserved.</p>
-            <p class="copyright-contact">
-                <i class="fa-regular fa-paper-plane"></i>
-                <a href="mailto:obedmav1@gmail.com">obedmav1@gmail.com</a>
-                <span class="copyright-sep">&middot;</span>
-                <i class="fa-solid fa-phone"></i>
-                (470)-437-6806
+            <p class="footer-contact">
+                <a href="mailto:obedmav1@gmail.com"><i class="fa-regular fa-paper-plane"></i> obedmav1@gmail.com</a>
+                <span class="dot">&middot;</span>
+                <span><i class="fa-solid fa-phone"></i> (470)-437-6806</span>
             </p>
-        </div>
-    </div>
+        </footer>
+    </section>
 
-    <!-- ===================== SCRIPTS ===================== -->
-    <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-        function opentab(tabname) {
-            for (var tablink of tablinks) tablink.classList.remove("active-link");
-            for (var tabcontent of tabcontents) tabcontent.classList.remove("active-tab");
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
-    </script>
+</div><!-- /site -->
 
-    <script>
-        var sidemenu = document.getElementById("sidemenu");
-        function openmenu() { sidemenu.style.right = "0"; }
-        function closemenu() { sidemenu.style.right = "-260px"; }
-    </script>
+<!-- ======================== SCRIPTS ======================== -->
+<script>
+/* ── Intro sequence ── */
+(function(){
+    var site  = document.getElementById('site');
+    var intro = document.getElementById('intro');
+    site.classList.add('hidden');
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxatxA5xlIpMvae-DrjaGz4Oa2GLNvnnuNumTd6RjrH9f93_SqNV2f7IPmylXIxXuS8/exec';
-        const form = document.forms['submit-to-google-sheet'];
-        const msg = document.getElementById("msg");
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                    msg.innerHTML = "Message sent successfully";
-                    setTimeout(function() { msg.innerHTML = ""; }, 5000);
-                    form.reset();
-                })
-                .catch(error => console.error('Error!', error.message));
+    var BINARY = '01000111 01101111 01101111 01100100 00100000 01001101 01101111 01110010 01101110 01101001 01101110 01100111';
+    var TEXT   = 'Good Morning.';
+    var $name  = document.getElementById('iName');
+    var $stat  = document.getElementById('iStatus');
+    var $bin   = document.getElementById('iBinary');
+    var $msg   = document.getElementById('iMsg');
+    var $enter = document.getElementById('iEnter');
+
+    /* Binary rain */
+    var rc = document.getElementById('introRain');
+    if(rc){
+        var rx = rc.getContext('2d');
+        rc.width = window.innerWidth; rc.height = window.innerHeight;
+        var cols = Math.floor(rc.width/18), dr = [];
+        for(var i=0;i<cols;i++) dr[i] = Math.random()*-80;
+        (function rain(){
+            if(intro.classList.contains('out')) return;
+            rx.fillStyle='rgba(0,0,0,.06)'; rx.fillRect(0,0,rc.width,rc.height);
+            rx.fillStyle='#00f5ff'; rx.font='14px JetBrains Mono,Courier New,monospace';
+            for(var j=0;j<dr.length;j++){
+                rx.fillText(Math.random()>.5?'1':'0', j*18, dr[j]*18);
+                if(dr[j]*18>rc.height && Math.random()>.97) dr[j]=0;
+                dr[j]++;
+            }
+            requestAnimationFrame(rain);
+        })();
+    }
+
+    /* Timeline */
+    setTimeout(function(){ $name.classList.add('on'); }, 300);
+    setTimeout(function(){ $stat.classList.add('on'); }, 800);
+    setTimeout(function(){
+        $bin.classList.add('on');
+        var k=0, iv=setInterval(function(){
+            k+=3; if(k>=BINARY.length){k=BINARY.length; clearInterval(iv);}
+            $bin.textContent=BINARY.substring(0,k);
+        },20);
+    }, 1200);
+    setTimeout(function(){
+        $msg.classList.add('on');
+        var m=0, iv2=setInterval(function(){
+            m++;
+            if(m>=TEXT.length){ clearInterval(iv2); $msg.innerHTML=TEXT+'<span class="intro-caret">_</span>'; return; }
+            $msg.innerHTML=TEXT.substring(0,m)+'<span class="intro-caret">_</span>';
+        },70);
+    }, 3000);
+    setTimeout(function(){ $enter.classList.add('on'); }, 4500);
+
+    /* Enter click */
+    var $granted = document.getElementById('iGranted');
+    $enter.addEventListener('click', function(){
+        /* Hide enter button & show ACCESS GRANTED */
+        $enter.style.opacity='0';
+        $enter.style.pointerEvents='none';
+        $granted.classList.add('on');
+
+        /* After flash, fade out intro */
+        setTimeout(function(){
+            intro.classList.add('out');
+            site.classList.remove('hidden');
+            site.classList.add('reveal');
+            setTimeout(function(){ intro.style.display='none'; }, 900);
+        }, 1200);
+    });
+})();
+
+/* ── Tabs ── */
+(function(){
+    var tabs = document.querySelectorAll('.tab');
+    tabs.forEach(function(t){
+        t.addEventListener('click', function(){
+            tabs.forEach(function(x){ x.classList.remove('active'); });
+            document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+            t.classList.add('active');
+            document.getElementById('tab-'+t.dataset.tab).classList.add('active');
         });
-    </script>
+    });
+})();
 
-    <!-- ===================== HOLOGRAM PARTICLE JS ===================== -->
-    <script>
-    (function () {
+/* ── Mobile menu ── */
+var sidemenu = document.getElementById('sidemenu');
+function openmenu(){ sidemenu.style.right='0'; }
+function closemenu(){ sidemenu.style.right='-260px'; }
 
-        /* ── 1. SVG ticks ── */
-        const tickGroup = document.getElementById('tickGroup');
-        if (tickGroup) {
-            const cx = 220, cy = 220, r = 205;
-            for (let i = 0; i < 72; i++) {
-                const angle = (i * 5) * Math.PI / 180;
-                const isMajor = i % 18 === 0, isMid = i % 6 === 0;
-                const len = isMajor ? 16 : (isMid ? 10 : 5);
-                const x1 = cx + (r - len) * Math.sin(angle), y1 = cy - (r - len) * Math.cos(angle);
-                const x2 = cx + r * Math.sin(angle),         y2 = cy - r * Math.cos(angle);
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-                line.setAttribute('x2', x2); line.setAttribute('y2', y2);
-                line.setAttribute('stroke', '#00f5ff');
-                line.setAttribute('stroke-width', isMajor ? 2 : 1);
-                line.setAttribute('opacity', isMajor ? 0.9 : (isMid ? 0.55 : 0.25));
-                tickGroup.appendChild(line);
-            }
+/* ── Contact form ── */
+(function(){
+    var url = 'https://script.google.com/macros/s/AKfycbxatxA5xlIpMvae-DrjaGz4Oa2GLNvnnuNumTd6RjrH9f93_SqNV2f7IPmylXIxXuS8/exec';
+    var form = document.forms['submit-to-google-sheet'];
+    var msg = document.getElementById('msg');
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        fetch(url, {method:'POST', body:new FormData(form)})
+            .then(function(){ msg.textContent='Message sent successfully'; setTimeout(function(){ msg.textContent=''; },5000); form.reset(); })
+            .catch(function(err){ console.error('Error!', err.message); });
+    });
+})();
+</script>
+
+<!-- ── Hologram engine ── -->
+<script>
+(function(){
+    /* SVG ticks */
+    var tg = document.getElementById('tickGroup');
+    if(tg){
+        for(var i=0;i<72;i++){
+            var a=(i*5)*Math.PI/180, major=i%18===0, mid=i%6===0;
+            var len=major?16:(mid?10:5), cx=220, cy=220, r=205;
+            var x1=cx+(r-len)*Math.sin(a), y1=cy-(r-len)*Math.cos(a);
+            var x2=cx+r*Math.sin(a), y2=cy-r*Math.cos(a);
+            var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+            l.setAttribute('x1',x1); l.setAttribute('y1',y1);
+            l.setAttribute('x2',x2); l.setAttribute('y2',y2);
+            l.setAttribute('stroke','#00f5ff');
+            l.setAttribute('stroke-width',major?2:1);
+            l.setAttribute('opacity',major?.9:(mid?.55:.25));
+            tg.appendChild(l);
         }
+    }
 
-        /* ── 2. Background ambient particles ── */
-        const bgCanvas = document.getElementById('holoCanvas');
-        if (bgCanvas) {
-            const bctx = bgCanvas.getContext('2d');
-            const S = 680; bgCanvas.width = S; bgCanvas.height = S;
-            const bps = Array.from({ length: 30 }, () => ({
-                x: Math.random() * S, y: Math.random() * S,
-                vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
-                r: Math.random() * 1.2 + .3, a: Math.random() * .3 + .05
-            }));
-            (function drawBg() {
-                bctx.clearRect(0, 0, S, S);
-                for (let i = 0; i < bps.length; i++) {
-                    for (let j = i + 1; j < bps.length; j++) {
-                        const dx = bps[i].x - bps[j].x, dy = bps[i].y - bps[j].y;
-                        const d = Math.sqrt(dx*dx + dy*dy);
-                        if (d < 80) {
-                            bctx.beginPath(); bctx.moveTo(bps[i].x, bps[i].y); bctx.lineTo(bps[j].x, bps[j].y);
-                            bctx.strokeStyle = 'rgba(0,245,255,' + (.08 * (1 - d/80)) + ')';
-                            bctx.lineWidth = .5; bctx.stroke();
-                        }
-                    }
-                }
-                bps.forEach(function(p) {
-                    p.x += p.vx; p.y += p.vy;
-                    if (p.x < 0) p.x = S; if (p.x > S) p.x = 0;
-                    if (p.y < 0) p.y = S; if (p.y > S) p.y = 0;
-                    bctx.beginPath(); bctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-                    bctx.fillStyle = 'rgba(0,245,255,' + p.a + ')';
-                    bctx.shadowBlur = 5; bctx.shadowColor = '#00f5ff';
-                    bctx.fill(); bctx.shadowBlur = 0;
-                });
-                requestAnimationFrame(drawBg);
-            })();
-        }
-
-        /* ── 3. FACE PARTICLE ENGINE ── */
-        const faceCanvas = document.getElementById('holoParticleCanvas');
-        if (!faceCanvas) return;
-        const ctx = faceCanvas.getContext('2d');
-        const CW = 680, CH = 680;
-        faceCanvas.width = CW; faceCanvas.height = CH;
-
-        var particles = [];
-        var mouseX = CW / 2, mouseY = CH / 2;
-        var frame = 0;
-
-        var img = new Image();
-        img.src = 'images/backkkk.png';
-
-        img.onload = function () {
-            var SW = 160, SH = 185;
-            var off = document.createElement('canvas');
-            off.width = SW; off.height = SH;
-            var octx = off.getContext('2d');
-            octx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, SW, SH);
-            var data = octx.getImageData(0, 0, SW, SH).data;
-
-            var scaleX = CW * 0.92 / SW;
-            var scaleY = CH * 0.94 / SH;
-            var offX   = CW * 0.04;
-            var offY   = CH * 0.03;
-            var STEP   = 3;
-            particles  = [];
-
-            for (var sy = 0; sy < SH; sy += STEP) {
-                for (var sx = 0; sx < SW; sx += STEP) {
-                    var idx   = (sy * SW + sx) * 4;
-                    var r     = data[idx], g = data[idx+1], b = data[idx+2], a = data[idx+3];
-                    if (a < 30) continue;
-                    var bright = (r + g + b) / 3;
-                    if (bright < 12) continue;
-
-                    var tx   = sx * scaleX + offX;
-                    var ty   = sy * scaleY + offY;
-                    var norm = bright / 255;
-
-                    var faceCX = SW * 0.5;
-                    var faceCY = SH * 0.42;
-                    var dx2    = (sx - faceCX) / (SW * 0.52);
-                    var dy2    = (sy - faceCY) / (SH * 0.52);
-                    var edist  = Math.sqrt(dx2 * dx2 * 1.1 + dy2 * dy2 * 0.9);
-                    var fade   = Math.max(0, 1 - Math.pow(Math.max(0, edist - 0.3) / 0.72, 1.6));
-                    var scatter = edist > 0.5 ? Math.random() : 1.0;
-                    var finalFade = fade * scatter;
-                    if (finalFade < 0.04) continue;
-
-                    particles.push({
-                        x: Math.random() * CW,
-                        y: Math.random() * CH,
-                        tx: tx, ty: ty,
-                        baseX: tx, baseY: ty,
-                        size: norm * 2.4 * finalFade + 0.3,
-                        alpha: (norm * 0.7 + 0.18) * finalFade,
-                        brightness: norm,
-                        phase: Math.random() * Math.PI * 2,
-                        speed: Math.random() * 0.018 + 0.012,
-                        driftAmp: 1.3 + (1 - finalFade) * 4.5
-                    });
-                }
+    /* Ambient particles */
+    var bg=document.getElementById('holoCanvas');
+    if(bg){
+        var bx=bg.getContext('2d'), S=680; bg.width=S; bg.height=S;
+        var ps=Array.from({length:30},function(){return{x:Math.random()*S,y:Math.random()*S,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.2+.3,a:Math.random()*.3+.05}});
+        (function draw(){
+            bx.clearRect(0,0,S,S);
+            for(var i=0;i<ps.length;i++) for(var j=i+1;j<ps.length;j++){
+                var dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,d=Math.sqrt(dx*dx+dy*dy);
+                if(d<80){bx.beginPath();bx.moveTo(ps[i].x,ps[i].y);bx.lineTo(ps[j].x,ps[j].y);bx.strokeStyle='rgba(0,245,255,'+(.08*(1-d/80))+')';bx.lineWidth=.5;bx.stroke();}
             }
-            animate();
-        };
-
-        var scene = document.getElementById('holoScene');
-        if (scene) {
-            document.addEventListener('mousemove', function(e) {
-                var rect = scene.getBoundingClientRect();
-                mouseX = e.clientX - rect.left;
-                mouseY = e.clientY - rect.top;
-                var cx = rect.width / 2, cy = rect.height / 2;
-                var dx = (mouseX - cx) / cx;
-                var dy = (mouseY - cy) / cy;
-                scene.style.transform = 'rotateY(' + (dx*18) + 'deg) rotateX(' + (-dy*12) + 'deg)';
-                scene.style.transition = 'transform 0.12s ease-out';
+            ps.forEach(function(p){
+                p.x+=p.vx;p.y+=p.vy;
+                if(p.x<0)p.x=S;if(p.x>S)p.x=0;if(p.y<0)p.y=S;if(p.y>S)p.y=0;
+                bx.beginPath();bx.arc(p.x,p.y,p.r,0,Math.PI*2);
+                bx.fillStyle='rgba(0,245,255,'+p.a+')';bx.shadowBlur=5;bx.shadowColor='#00f5ff';bx.fill();bx.shadowBlur=0;
             });
-            document.addEventListener('mouseleave', function() {
-                scene.style.transform = 'rotateY(0deg) rotateX(0deg)';
-            });
+            requestAnimationFrame(draw);
+        })();
+    }
+
+    /* Face particle engine */
+    var fc=document.getElementById('holoParticleCanvas');
+    if(!fc)return;
+    var ctx=fc.getContext('2d'), CW=680, CH=680; fc.width=CW; fc.height=CH;
+    var particles=[],mouseX=CW/2,mouseY=CH/2,frame=0;
+    var img=new Image(); img.src='images/backkkk.png';
+    img.onload=function(){
+        var SW=160,SH=185,off=document.createElement('canvas');off.width=SW;off.height=SH;
+        var ox=off.getContext('2d');ox.drawImage(img,0,0,img.naturalWidth,img.naturalHeight,0,0,SW,SH);
+        var data=ox.getImageData(0,0,SW,SH).data;
+        var scX=CW*.92/SW,scY=CH*.94/SH,oX=CW*.04,oY=CH*.03,STEP=3;particles=[];
+        for(var sy=0;sy<SH;sy+=STEP)for(var sx=0;sx<SW;sx+=STEP){
+            var idx=(sy*SW+sx)*4,r=data[idx],g=data[idx+1],b=data[idx+2],al=data[idx+3];
+            if(al<30)continue;var br=(r+g+b)/3;if(br<12)continue;
+            var tx=sx*scX+oX,ty=sy*scY+oY,n=br/255;
+            var fcx=SW*.5,fcy=SH*.42,dx2=(sx-fcx)/(SW*.52),dy2=(sy-fcy)/(SH*.52);
+            var ed=Math.sqrt(dx2*dx2*1.1+dy2*dy2*.9);
+            var fd=Math.max(0,1-Math.pow(Math.max(0,ed-.3)/.72,1.6));
+            var sc=ed>.5?Math.random():1,ff=fd*sc;if(ff<.04)continue;
+            particles.push({x:Math.random()*CW,y:Math.random()*CH,tx:tx,ty:ty,baseX:tx,baseY:ty,size:n*2.4*ff+.3,alpha:(n*.7+.18)*ff,brightness:n,phase:Math.random()*Math.PI*2,speed:Math.random()*.018+.012,driftAmp:1.3+(1-ff)*4.5});
         }
+        animate();
+    };
+    var scene=document.getElementById('holoScene');
+    if(scene){
+        document.addEventListener('mousemove',function(e){
+            var rect=scene.getBoundingClientRect();mouseX=e.clientX-rect.left;mouseY=e.clientY-rect.top;
+            var cx=rect.width/2,cy=rect.height/2,dx=(mouseX-cx)/cx,dy=(mouseY-cy)/cy;
+            scene.style.transform='rotateY('+(dx*18)+'deg) rotateX('+(-dy*12)+'deg)';
+            scene.style.transition='transform .12s ease-out';
+        });
+        document.addEventListener('mouseleave',function(){scene.style.transform='rotateY(0) rotateX(0)';});
+    }
+    var gl=document.getElementById('holoGlitch');
+    function glitch(){if(!gl)return;gl.classList.add('active');setTimeout(function(){gl.classList.remove('active');},150+Math.random()*200);setTimeout(glitch,3000+Math.random()*5000);}
+    setTimeout(glitch,2000);
 
-        var glitch = document.getElementById('holoGlitch');
-        function triggerGlitch() {
-            if (!glitch) return;
-            glitch.classList.add('active');
-            setTimeout(function() { glitch.classList.remove('active'); }, 150 + Math.random()*200);
-            setTimeout(triggerGlitch, 3000 + Math.random()*5000);
+    function animate(){
+        ctx.clearRect(0,0,CW,CH);frame++;
+        for(var i=0;i<particles.length;i++){
+            var p=particles[i];p.phase+=p.speed;
+            var fx=Math.sin(p.phase)*(p.driftAmp||1.3),fy=Math.cos(p.phase*.7)*(p.driftAmp||1.3)*.5;
+            var dx=p.baseX-mouseX,dy=p.baseY-mouseY,dist=Math.sqrt(dx*dx+dy*dy),rx=0,ry=0;
+            if(dist<75&&dist>0){var f=(75-dist)/75;rx=(dx/dist)*f*14;ry=(dy/dist)*f*14;}
+            p.tx=p.baseX+fx+rx;p.ty=p.baseY+fy+ry;p.x+=(p.tx-p.x)*.075;p.y+=(p.ty-p.y)*.075;
+            var b=p.brightness,pulse=.82+.18*Math.sin(p.phase*1.8),a=p.alpha*pulse;
+            ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+            ctx.fillStyle='rgba('+Math.floor(b*100)+','+Math.floor(200+b*55)+','+Math.floor(230+b*25)+','+a+')';
+            if(b>.55){ctx.shadowBlur=5+b*9;ctx.shadowColor='rgba(0,245,255,'+(b*.75)+')';}
+            ctx.fill();ctx.shadowBlur=0;
         }
-        setTimeout(triggerGlitch, 2000);
-
-        function animate() {
-            ctx.clearRect(0, 0, CW, CH);
-            frame++;
-
-            var REPEL_R    = 75;
-            var REPEL_F    = 14;
-            var EASE       = 0.075;
-
-            for (var i = 0; i < particles.length; i++) {
-                var p = particles[i];
-                p.phase += p.speed;
-
-                var floatX = Math.sin(p.phase) * (p.driftAmp || 1.3);
-                var floatY = Math.cos(p.phase * 0.7) * (p.driftAmp || 1.3) * 0.5;
-
-                var dx   = p.baseX - mouseX;
-                var dy   = p.baseY - mouseY;
-                var dist = Math.sqrt(dx*dx + dy*dy);
-                var rx = 0, ry = 0;
-                if (dist < REPEL_R && dist > 0) {
-                    var force = (REPEL_R - dist) / REPEL_R;
-                    rx = (dx / dist) * force * REPEL_F;
-                    ry = (dy / dist) * force * REPEL_F;
-                }
-
-                p.tx = p.baseX + floatX + rx;
-                p.ty = p.baseY + floatY + ry;
-                p.x += (p.tx - p.x) * EASE;
-                p.y += (p.ty - p.y) * EASE;
-
-                var b      = p.brightness;
-                var pulse  = 0.82 + 0.18 * Math.sin(p.phase * 1.8);
-                var alpha  = p.alpha * pulse;
-
-                var cr = Math.floor(b * 100);
-                var cg = Math.floor(200 + b * 55);
-                var cb = Math.floor(230 + b * 25);
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + alpha + ')';
-                if (b > 0.55) {
-                    ctx.shadowBlur  = 5 + b * 9;
-                    ctx.shadowColor = 'rgba(0,245,255,' + (b * 0.75) + ')';
-                }
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-
-            var scanY = ((frame * 1.1) % (CH * 1.1)) - CH * 0.05;
-            var sg = ctx.createLinearGradient(0, scanY-3, 0, scanY+3);
-            sg.addColorStop(0,   'rgba(0,245,255,0)');
-            sg.addColorStop(0.5, 'rgba(0,245,255,0.3)');
-            sg.addColorStop(1,   'rgba(0,245,255,0)');
-            ctx.fillStyle = sg;
-            ctx.fillRect(CW*0.08, scanY-3, CW*0.84, 6);
-
-            requestAnimationFrame(animate);
-        }
-
-    })();
-    </script>
-
+        var sY=((frame*1.1)%(CH*1.1))-CH*.05;
+        var sg=ctx.createLinearGradient(0,sY-3,0,sY+3);
+        sg.addColorStop(0,'rgba(0,245,255,0)');sg.addColorStop(.5,'rgba(0,245,255,.3)');sg.addColorStop(1,'rgba(0,245,255,0)');
+        ctx.fillStyle=sg;ctx.fillRect(CW*.08,sY-3,CW*.84,6);
+        requestAnimationFrame(animate);
+    }
+})();
+</script>
 </body>
 </html>
