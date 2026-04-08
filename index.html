@@ -327,8 +327,24 @@
     var intro = document.getElementById('intro');
     site.classList.add('hidden');
 
-    var BINARY = '01000111 01101111 01101111 01100100 00100000 01001101 01101111 01110010 01101110 01101001 01101110 01100111';
-    var TEXT   = 'Good Morning.';
+    function getGreetingByTime() {
+        var hour = new Date().getHours();
+        if (hour < 12) return 'Good Morning.';
+        if (hour < 18) return 'Good Afternoon.';
+        return 'Good Evening.';
+    }
+
+    function textToBinary(text) {
+        return text
+            .split('')
+            .map(function(char) {
+                return char.charCodeAt(0).toString(2).padStart(8, '0');
+            })
+            .join(' ');
+    }
+
+    var TEXT   = getGreetingByTime();
+    var BINARY = textToBinary(TEXT);
     var $name  = document.getElementById('iName');
     var $stat  = document.getElementById('iStatus');
     var $bin   = document.getElementById('iBinary');
