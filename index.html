@@ -327,6 +327,17 @@
     var intro = document.getElementById('intro');
     site.classList.add('hidden');
 
+    /* Prevent the browser from restoring a previous scroll position
+       (e.g. on mobile when reopening the tab) so the user always lands
+       at the top of the page on the hologram / hero section. */
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    /* Lock page scrolling while the intro is visible */
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
     function getGreetingByTime() {
         var hour = new Date().getHours();
         if (hour < 12) return 'Good Morning.';
@@ -401,11 +412,31 @@
 
         /* After flash, fade out intro */
         setTimeout(function(){
+            /* Force scroll to top BEFORE revealing the site so the user
+               always lands on the hero / hologram (not on a section the
+               mobile browser restored from a previous visit). */
+            window.scrollTo(0, 0);
             intro.classList.add('out');
             site.classList.remove('hidden');
             site.classList.add('reveal');
-            setTimeout(function(){ intro.style.display='none'; }, 900);
+            /* Re-enable page scrolling */
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+            /* Double-check after reveal in case of late layout shifts */
+            window.scrollTo(0, 0);
+            setTimeout(function(){
+                intro.style.display='none';
+                window.scrollTo(0, 0);
+            }, 900);
         }, 1200);
+    });
+
+    /* Safety: if the page is restored from the bfcache (common on iOS/Android
+       when navigating back), reset to top as well. */
+    window.addEventListener('pageshow', function(e){
+        if (e.persisted) {
+            window.scrollTo(0, 0);
+        }
     });
 })();
 
