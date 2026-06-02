@@ -250,35 +250,51 @@
     <section id="portfolio">
         <div class="container">
             <h2 class="section-title">My Work</h2>
-            <div class="work-grid">
-                <div class="work-card">
-                    <img src="images/syllabyte.png" alt="Syllabyte" loading="lazy">
-                    <div class="work-overlay">
-                        <h3>Syllabyte</h3>
-                        <p>An AI-powered learning platform that uses a multi-agent system to support university students with tutoring,practice exercices, automated grading and feedback</p>
-                        <a href="https://syllabyte.tech/upload" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work-card">
-                    <img src="images/prod-saas.png" alt="Productivity SaaS" loading="lazy">
-                    <div class="work-overlay">
-                        <h3>Productivity SaaS</h3>
-                        <p>A full stack management platform with authentification database persistence and cloud deployment that allow users to track,organize and manage their tasks.</p>
-                        <a href="https://productivity-saas-silk.vercel.app/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work-card">
-                    <img src="images/Screenshot 2026-04-05 135308.png" alt="Obed Site Builder" loading="lazy">
-                    <div class="work-overlay">
-                        <h3>Obed Site Builder</h3>
-                        <p>AI-powered web application that generates websites from user prompts and allows real-time preview and interaction with dynamically generated components.</p>
-                        <a href="https://github.com/bedo-48/OBED-SITE-BUILDER" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
+
+            <!-- Animated stats band -->
+            <div class="work-stats" id="workStats">
+                <div class="stat"><span class="stat-num" data-count="5" data-suffix="">0</span><span class="stat-label">Projects Shipped</span></div>
+                <div class="stat"><span class="stat-num" data-count="80.9" data-suffix="%" data-decimals="1">0</span><span class="stat-label">ML Model Accuracy</span></div>
+                <div class="stat"><span class="stat-num" data-count="725" data-suffix="K+">0</span><span class="stat-label">Fights Trained On</span></div>
+                <div class="stat"><span class="stat-num" data-count="8" data-suffix="+">0</span><span class="stat-label">Technologies</span></div>
             </div>
-            <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer" class="btn-outline-block">See more</a>
+
+            <!-- Tech filter bar -->
+            <div class="work-filters" id="workFilters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai">AI &amp; ML</button>
+                <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+
+            <!-- Cards rendered from JS -->
+            <div class="work-grid" id="workGrid"></div>
+
+            <a href="https://github.com/bedo-48" target="_blank" rel="noopener noreferrer" class="btn-outline-block">See more on GitHub</a>
         </div>
     </section>
+
+    <!-- PROJECT DETAIL MODAL (the slide) -->
+    <div class="pm-overlay" id="pmOverlay" aria-hidden="true">
+        <div class="pm-modal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+            <button class="pm-close" id="pmClose" aria-label="Close"><span></span><span></span></button>
+            <div class="pm-media">
+                <img id="pmImg" src="" alt="" loading="lazy">
+                <span class="pm-cat" id="pmCat"></span>
+            </div>
+            <div class="pm-body">
+                <h3 class="pm-title" id="pmTitle"></h3>
+                <p class="pm-tagline" id="pmTagline"></p>
+                <p class="pm-desc" id="pmDesc"></p>
+                <div class="pm-metrics" id="pmMetrics"></div>
+                <div class="pm-stack" id="pmStack"></div>
+                <div class="pm-actions">
+                    <a class="btn-fill small pm-live" id="pmLive" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Live</a>
+                    <a class="btn-ghost pm-git" id="pmGit" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> View GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- CONTACT -->
     <section id="contact">
@@ -469,6 +485,148 @@ function closemenu(){ sidemenu.style.right='-260px'; }
             .then(function(){ msg.textContent='Message sent successfully'; setTimeout(function(){ msg.textContent=''; },5000); form.reset(); })
             .catch(function(err){ console.error('Error!', err.message); });
     });
+})();
+
+/* ── Portfolio: data, cards, filters, modal, counters ── */
+(function(){
+    var PROJECTS = [
+        {
+            id:'punchiq', name:'PunchIQ', img:'images/punch-iq-cover.png', imgFallback:'images/punchiq.png',
+            cats:['ai'], catLabel:'AI / Machine Learning',
+            tagline:'ML boxing fight predictor with explainable AI',
+            desc:'A machine-learning system that predicts the winner of a hypothetical match between any two fighters from a database of 2,700+ boxers, returning calibrated probabilities and a SHAP breakdown of <em>why</em> the model favors one fighter. Trained on 725,310 fights with symmetric encoding to eliminate positional bias; a Random Forest is served through a FastAPI backend behind a React frontend.',
+            metrics:[['80.9%','RF Accuracy'],['725K','Fights Trained'],['2,700+','Fighters'],['SHAP','Explainable']],
+            stack:['Python','scikit-learn','FastAPI','React','SHAP','pandas'],
+            live:'https://punch-iq.vercel.app/', git:'https://github.com/bedo-48/Punch-IQ'
+        },
+        {
+            id:'wapi', name:'WAPI', img:'images/wapi.png',
+            cats:['fullstack','mobile'], catLabel:'Full-Stack / Mobile',
+            tagline:'"Toko lia wapi?" — restaurant discovery for Kinshasa',
+            desc:'A cross-platform restaurant-discovery and social app for Kinshasa. Users browse and search restaurants, save favorites, post to a community feed, and get notifications. Built once in React 19 and shipped natively to iOS and Android with Capacitor, backed by Supabase for auth, data, and storage — plus a dedicated admin panel.',
+            metrics:[['iOS + Android','Native via Capacitor'],['Supabase','Auth & Realtime'],['Community','Posts & Favorites'],['Admin','Dashboard']],
+            stack:['React 19','Capacitor','Supabase','React Router','PWA'],
+            live:'https://wapi-app.vercel.app/', git:'https://github.com/bedo-48/wapi'
+        },
+        {
+            id:'sitebuilder', name:'Obed Site Builder', img:'images/Screenshot 2026-04-05 135308.png',
+            cats:['ai','fullstack'], catLabel:'AI / Full-Stack',
+            tagline:'Generate live websites from a single prompt',
+            desc:'An AI-powered web app that turns natural-language prompts into working websites, with real-time preview and interaction over the dynamically generated components. Full client/server architecture deployed to the cloud.',
+            metrics:[['Prompt → Site','AI Generation'],['Live Preview','Real-time'],['Full-Stack','Client + Server']],
+            stack:['React','Node.js','Express','AI APIs','Render'],
+            live:'https://obed-site-builder.vercel.app/', git:'https://github.com/bedo-48/OBED-SITE-BUILDER'
+        },
+        {
+            id:'syllabyte', name:'Syllabyte', img:'images/syllabyte.png',
+            cats:['ai','fullstack'], catLabel:'AI / Full-Stack',
+            tagline:'Multi-agent AI learning platform for students',
+            desc:'An AI-powered learning platform that uses a multi-agent system to support university students with tutoring, practice exercises, automated grading, and personalized feedback.',
+            metrics:[['Multi-Agent','AI System'],['Auto-Grading','+ Feedback'],['Tutoring','On Demand']],
+            stack:['React','Node.js','Multi-Agent AI','REST APIs'],
+            live:'https://syllabyte.tech/upload', git:'https://github.com/bedo-48/syllabyte'
+        },
+        {
+            id:'prodsaas', name:'Productivity SaaS', img:'images/prod-saas.png',
+            cats:['fullstack'], catLabel:'Full-Stack',
+            tagline:'Task management platform with auth & cloud persistence',
+            desc:'A full-stack productivity platform that lets users track, organize, and manage tasks. Features JWT authentication, PostgreSQL persistence, and cloud deployment with a clean, responsive UI.',
+            metrics:[['JWT','Secure Auth'],['PostgreSQL','Persistence'],['Cloud','Deployed']],
+            stack:['React','Node.js','Express','PostgreSQL','JWT'],
+            live:'https://productivity-saas-silk.vercel.app/', git:'https://github.com/bedo-48/productivity-saas'
+        }
+    ];
+
+    var grid = document.getElementById('workGrid');
+    if(!grid) return;
+
+    /* Render cards */
+    PROJECTS.forEach(function(p, i){
+        var card = document.createElement('article');
+        card.className = 'work-card';
+        card.setAttribute('data-cats', p.cats.join(' '));
+        card.style.setProperty('--d', (i*0.06)+'s');
+        var onerr = p.imgFallback ? ' onerror="this.onerror=null;this.src=\''+p.imgFallback+'\'"' : '';
+        card.innerHTML =
+            '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy"'+onerr+'>' +
+            '<div class="work-overlay">' +
+                '<span class="work-cat">'+p.catLabel+'</span>' +
+                '<h3>'+p.name+'</h3>' +
+                '<p>'+p.tagline+'</p>' +
+                '<span class="work-cta">View Project <i class="fa-solid fa-arrow-right"></i></span>' +
+            '</div>';
+        card.addEventListener('click', function(){ openModal(p); });
+        grid.appendChild(card);
+    });
+
+    /* Filters */
+    var fbar = document.getElementById('workFilters');
+    fbar.addEventListener('click', function(e){
+        var btn = e.target.closest('.filter-btn'); if(!btn) return;
+        fbar.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        var f = btn.dataset.filter;
+        grid.querySelectorAll('.work-card').forEach(function(c){
+            var show = f==='all' || c.getAttribute('data-cats').indexOf(f)>-1;
+            c.classList.toggle('hide', !show);
+        });
+    });
+
+    /* Modal */
+    var ov=document.getElementById('pmOverlay');
+    function openModal(p){
+        var pmImg=document.getElementById('pmImg');
+        pmImg.onerror = p.imgFallback ? function(){ pmImg.onerror=null; pmImg.src=p.imgFallback; } : null;
+        pmImg.src=p.img;
+        pmImg.alt=p.name;
+        document.getElementById('pmCat').textContent=p.catLabel;
+        document.getElementById('pmTitle').textContent=p.name;
+        document.getElementById('pmTagline').textContent=p.tagline;
+        document.getElementById('pmDesc').innerHTML=p.desc;
+        document.getElementById('pmMetrics').innerHTML = p.metrics.map(function(m){
+            return '<div class="pm-metric"><span class="pm-metric-v">'+m[0]+'</span><span class="pm-metric-l">'+m[1]+'</span></div>';
+        }).join('');
+        document.getElementById('pmStack').innerHTML = p.stack.map(function(t){
+            return '<span class="pm-badge">'+t+'</span>';
+        }).join('');
+        var live=document.getElementById('pmLive'), git=document.getElementById('pmGit');
+        if(p.live){ live.href=p.live; live.style.display=''; } else { live.style.display='none'; }
+        if(p.git){ git.href=p.git; git.style.display=''; } else { git.style.display='none'; }
+        ov.classList.add('open'); ov.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+    }
+    function closeModal(){
+        ov.classList.remove('open'); ov.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+    }
+    document.getElementById('pmClose').addEventListener('click', closeModal);
+    ov.addEventListener('click', function(e){ if(e.target===ov) closeModal(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && ov.classList.contains('open')) closeModal(); });
+
+    /* Animated counters on scroll */
+    var stats=document.getElementById('workStats'), done=false;
+    function runCounters(){
+        if(done) return; done=true;
+        stats.querySelectorAll('.stat-num').forEach(function(el){
+            var target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.decimals||'0',10),
+                suffix=el.dataset.suffix||'', start=null, dur=1600;
+            function step(ts){
+                if(!start) start=ts;
+                var prog=Math.min((ts-start)/dur,1), eased=1-Math.pow(1-prog,3),
+                    val=target*eased;
+                el.textContent=(dec?val.toFixed(dec):Math.round(val).toLocaleString())+suffix;
+                if(prog<1) requestAnimationFrame(step);
+                else el.textContent=(dec?target.toFixed(dec):Math.round(target).toLocaleString())+suffix;
+            }
+            requestAnimationFrame(step);
+        });
+    }
+    if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(en){
+            en.forEach(function(e){ if(e.isIntersecting) runCounters(); });
+        },{threshold:.4});
+        io.observe(stats);
+    } else { runCounters(); }
 })();
 </script>
 
