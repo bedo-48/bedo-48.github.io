@@ -254,8 +254,8 @@
             <!-- Animated stats band -->
             <div class="work-stats" id="workStats">
                 <div class="stat"><span class="stat-num" data-count="5" data-suffix="">0</span><span class="stat-label">Projects Shipped</span></div>
-                <div class="stat"><span class="stat-num" data-count="80.9" data-suffix="%" data-decimals="1">0</span><span class="stat-label">ML Model Accuracy</span></div>
-                <div class="stat"><span class="stat-num" data-count="725" data-suffix="K+">0</span><span class="stat-label">Fights Trained On</span></div>
+                <div class="stat"><span class="stat-num" data-count="1888" data-suffix="">0</span><span class="stat-label">Venues Deduplicated</span></div>
+                <div class="stat"><span class="stat-num" data-count="17" data-suffix="K+">0</span><span class="stat-label">Fights Modeled</span></div>
                 <div class="stat"><span class="stat-num" data-count="8" data-suffix="+">0</span><span class="stat-label">Technologies</span></div>
             </div>
 
@@ -312,7 +312,7 @@
                         <a href="https://www.instagram.com/_bedo48/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/obed-mavungu-835542300/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
-                    <a href="obed-resume-1.7.pdf" download class="btn-fill small">Download CV</a>
+                    <a href="obed-mavungu-resume.pdf" download class="btn-fill small">Download CV</a>
                 </div>
                 <form class="contact-form" name="submit-to-google-sheet">
                     <input type="text" name="Name" placeholder="Your Name" required>
@@ -491,47 +491,47 @@ function closemenu(){ sidemenu.style.right='-260px'; }
 (function(){
     var PROJECTS = [
         {
-            id:'punchiq', name:'PunchIQ', img:'images/punch-iq-cover.png', imgFallback:'images/punchiq.png',
+            id:'punchiq', name:'PunchIQ', img:'images/punchiq-2026.png', imgFallback:'images/punch-iq-cover.png',
             cats:['ai'], catLabel:'AI / Machine Learning',
-            tagline:'ML boxing fight predictor with explainable AI',
-            desc:'A machine-learning system that predicts the winner of a hypothetical match between any two fighters from a database of 2,700+ boxers, returning calibrated probabilities and a SHAP breakdown of <em>why</em> the model favors one fighter. Trained on 725,310 fights with symmetric encoding to eliminate positional bias; a Random Forest is served through a FastAPI backend behind a React frontend.',
-            metrics:[['80.9%','RF Accuracy'],['725K','Fights Trained'],['2,700+','Fighters'],['SHAP','Explainable']],
-            stack:['Python','scikit-learn','FastAPI','React','SHAP','pandas'],
+            tagline:'Two-sport fight prediction, and the honest number behind it',
+            desc:'Predicts the winner of a hypothetical boxing or UFC matchup and returns a SHAP breakdown of <em>why</em> the model favors one fighter. The first boxing model scored 81%, which was too good to be true: the dataset carried career-final win-loss records, so the fight being predicted was already counted in its own features. I proved the leak by showing that a one-line heuristic nearly matched the Random Forest, then rebuilt the pipeline point-in-time for UFC with a January 2023 temporal split and 15 differential features. It reports 62.2% accuracy at a 0.2324 Brier score. That is the number that means something.',
+            metrics:[['62.2%','Point-in-time accuracy'],['0.2324','Brier score'],['17,208','Fights, train + test'],['6.5 MB','Inference footprint']],
+            stack:['Python','scikit-learn','pandas','FastAPI','SHAP','React'],
             live:'https://punch-iq.vercel.app/', git:'https://github.com/bedo-48/Punch-IQ'
         },
         {
-            id:'wapi', name:'WAPI', img:'images/wapi.png',
+            id:'wapi', name:'WAPI', img:'images/wapi-2026.png', imgFallback:'images/wapi.png',
             cats:['fullstack','mobile'], catLabel:'Full-Stack / Mobile',
-            tagline:'"Toko lia wapi?" — restaurant discovery for Kinshasa',
-            desc:'A cross-platform restaurant-discovery and social app for Kinshasa. Users browse and search restaurants, save favorites, post to a community feed, and get notifications. Built once in React 19 and shipped natively to iOS and Android with Capacitor, backed by Supabase for auth, data, and storage — plus a dedicated admin panel.',
-            metrics:[['iOS + Android','Native via Capacitor'],['Supabase','Auth & Realtime'],['Community','Posts & Favorites'],['Admin','Dashboard']],
-            stack:['React 19','Capacitor','Supabase','React Router','PWA'],
+            tagline:'"Toko lia wapi?" &mdash; restaurant discovery for Kinshasa',
+            desc:'Kinshasa has no reliable restaurant directory, so I built one. An ingestion pipeline merges the Google Places and OpenStreetMap APIs into 1,888 deduplicated venues using trigram similarity and Haversine distance. A large share of records came back with unusable coordinates; instead of paying for a re-scan I wrote a nearest-centroid reverse-geocoder over the 24 commune centroids, which recovered 77% of them and populated 22 of 24 communes at zero extra cost. One React codebase ships to web via Vercel and to iOS and Android via Capacitor, with live community feeds over Supabase Realtime.',
+            metrics:[['1,888','Venues deduplicated'],['77%','Broken coordinates recovered'],['22 / 24','Communes covered'],['$0','Extra API spend']],
+            stack:['React','Capacitor','Supabase','PostgreSQL','Node.js'],
             live:'https://wapi-app.vercel.app/', git:'https://github.com/bedo-48/wapi'
         },
         {
-            id:'sitebuilder', name:'Obed Site Builder', img:'images/Screenshot 2026-04-05 135308.png',
+            id:'sitebuilder', name:'AI Website Builder', img:'images/sitebuilder-2026.png', imgFallback:'images/Screenshot 2026-04-05 135308.png',
             cats:['ai','fullstack'], catLabel:'AI / Full-Stack',
-            tagline:'Generate live websites from a single prompt',
-            desc:'An AI-powered web app that turns natural-language prompts into working websites, with real-time preview and interaction over the dynamically generated components. Full client/server architecture deployed to the cloud.',
-            metrics:[['Prompt → Site','AI Generation'],['Live Preview','Real-time'],['Full-Stack','Client + Server']],
-            stack:['React','Node.js','Express','AI APIs','Render'],
+            tagline:'Describe a site in plain English, watch it build itself',
+            desc:'Turns a natural-language prompt into a working website. Generation takes tens of seconds, and a blank screen for tens of seconds feels broken, so the generated code streams to the browser over Server-Sent Events and the page renders token by token while it is being written. On top of generation sits a chat-based editing loop with project versioning and one-click rollback, so a bad generation is never a dead end. The Stripe path is signature-verified and idempotent, because payment webhooks arrive duplicated and out of order and credits must be granted exactly once.',
+            metrics:[['16','REST endpoints'],['8','Postgres tables'],['SSE','Token-by-token render'],['Idempotent','Stripe billing']],
+            stack:['React','Node.js','Express','PostgreSQL','Prisma','Stripe','OpenAI API'],
             live:'https://obed-site-builder.vercel.app/', git:'https://github.com/bedo-48/OBED-SITE-BUILDER'
         },
         {
             id:'syllabyte', name:'Syllabyte', img:'images/syllabyte.png',
             cats:['ai','fullstack'], catLabel:'AI / Full-Stack',
-            tagline:'Multi-agent AI learning platform for students',
-            desc:'An AI-powered learning platform that uses a multi-agent system to support university students with tutoring, practice exercises, automated grading, and personalized feedback.',
-            metrics:[['Multi-Agent','AI System'],['Auto-Grading','+ Feedback'],['Tutoring','On Demand']],
+            tagline:'Multi-agent AI learning platform, built in 24 hours',
+            desc:'An AI learning platform that uses a multi-agent system to support university students with tutoring, practice exercises, automated grading and personalized feedback. Built at HackPSU by a team of four in 24 hours, where it won Best Use of .Tech from Major League Hacking.',
+            metrics:[['MLH','Best Use of .Tech'],['24 h','Build time'],['4','Person team'],['Multi-agent','Architecture']],
             stack:['React','Node.js','Multi-Agent AI','REST APIs'],
             live:'https://syllabyte.tech/upload', git:'https://github.com/bedo-48/syllabyte'
         },
         {
             id:'prodsaas', name:'Productivity SaaS', img:'images/prod-saas.png',
             cats:['fullstack'], catLabel:'Full-Stack',
-            tagline:'Task management platform with auth & cloud persistence',
-            desc:'A full-stack productivity platform that lets users track, organize, and manage tasks. Features JWT authentication, PostgreSQL persistence, and cloud deployment with a clean, responsive UI.',
-            metrics:[['JWT','Secure Auth'],['PostgreSQL','Persistence'],['Cloud','Deployed']],
+            tagline:'Task management platform with auth and cloud persistence',
+            desc:'A full-stack productivity platform that lets users track, organize and manage tasks, with JWT authentication, PostgreSQL persistence and cloud deployment behind a clean, responsive UI.',
+            metrics:[['JWT','Secure auth'],['PostgreSQL','Persistence'],['Cloud','Deployed']],
             stack:['React','Node.js','Express','PostgreSQL','JWT'],
             live:'https://productivity-saas-silk.vercel.app/', git:'https://github.com/bedo-48/productivity-saas'
         }
